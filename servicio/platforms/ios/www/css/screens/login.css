@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+.login-view ion-content{
+	display:flex;
+	flex-direction: column;
+	 flex-flow:column nowrap;
+	 flex-wrap:nowrap;
+}
+.login-view ion-content>div{
+	flex: 1;
+    display: flex;
+	width:100%;
+	padding:0vh 5vh;
+	flex-direction: column;
+	text-align:center;
+	position:relative;
+}
+.login-view ion-content>div.logo{
+	width:100%;
+	height:auto;
+	background-image:url(../../img/logo.png);
+	background-position:center;
+	background-size:90%;
+	background-repeat:no-repeat;
+}
+.login-view ion-content>div>div.input-container{
+	width: 100%;
+    padding: 2vh 2vh 2vh 8vh;
+    border-top: solid 1px #383838;
+    border-bottom: solid 1px #383838;
+    height: 8vh;
+	position:relative;
+	float:left;
+}
+.login-view ion-content>div>div.input-container>i{
+	position: absolute;
+    color: #cdf030;
+    left: 0px;
+    font-size: 4vh;
+    margin: auto;
+    top: 0px;
+    bottom: 0px;
+    height: 4vh;
+    right: calc(100% - 8vh);
+    width: 4vh;
+}
+.login-view ion-content>div>div.input-container>i.ion-car-smart{
+	-webkit-mask-image: url("../../img/car.png");
+    -webkit-mask-size: contain;
+    background: #cdf030;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+}
+.login-view ion-content>div>div.input-container>input{
+	background: none;
+    border: none;
+    width: 100%;
+    color: #D4D4D4;
+    font-size: 3vh;
+    line-height: 4vh;
+    height: 4vh;
+    font-weight: 100;
+}
+.login-view ion-content>div>div.input-container>input::-webkit-input-placeholder{
+	color:#cdf030;
+}
+.login-view ion-content>div>button.login{
+	padding: 1.5vh;
+    width: 100%;
+    font-size: 3vh;
+    margin-top: 8vh;
+    left: 0px;
+    right: 0px;
+    background: #ABABAB;
+    color: #181818;
+    font-weight: bold;
+}
+.login-view ion-content>div>div{
+	position: absolute;
+    bottom: 2vh;
+    width: calc(100% - 10vh);
+    text-align: center;
+    font-size: 2.5vh;
+    color: #8BA70C;
+    font-weight: 100;
+}
+.login-view ion-content>div>button.settings{
+	position: absolute;
+    left: 1vh;
+    bottom: 1vh;
+    width: 6vh;
+    height: 6vh;
+    border-radius: 100% !important;
+    background: #383838;
+    font-size: 4.5vh;
+    color: #181818;
+}

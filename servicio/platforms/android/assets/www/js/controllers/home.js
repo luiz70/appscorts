@@ -1,0 +1,92 @@
+﻿angular.module('controllers')
+.controller('Home', function($scope,$rootScope,uiGmapGoogleMapApiManualLoader,$animate,uiGmapIsReady,uiGmapGoogleMapApi,$timeout,socket,Message,Memory,$ionicViewSwitcher,$state,$timeout,$ionicSlideBoxDelegate ,$interval) {
+	$scope.available=[];
+	$scope.online={
+		is:true,
+	};
+	$scope.openChats=function(){
+		if($scope.online.is)$scope.chats();
+		else{
+			Message.confirm("Sin conexion","No es posible abrir los chats cuando estas desconectada<div>¿Deseas conectarte?</div>",function(){
+				$scope.online.is=true;
+				$scope.chats()
+			})
+		}
+	}
+	$scope.refreshBitches=function(){
+		for(var i=0;i<$rootScope.bitches.length;i++)
+		$scope.available.push($rootScope.bitches[i])
+		$timeout(function(){
+			$(".home-card").animate({
+				'margin-top':"0px"
+			},300,function(){
+			})
+		},300);
+	}
+	$scope.refreshBitches();
+	$scope.likeb=function(bitch){
+		$("#card"+bitch.id).animate({
+			'margin-top':"-100vh"
+		},300,function(){
+			$scope.available.shift();
+			$scope.$apply();
+		})
+		
+	}
+	$scope.dislikeb=function(bitch){
+		$("#card"+bitch.id).animate({
+			'margin-top':"-100vh"
+		},300,function(){
+			$scope.available.shift();
+			$scope.$apply();
+		})
+	}
+	$rootScope.perfilUsuario={
+		nombre:"Alice",
+		edad:24,
+		ad:"!Hola, me encantaría que pasáramos un día de diversión juntos!",
+		id:1,
+		about:"Me gusta salir a cenar, ver películas en casa, viajar acompañada y divertirme mucho",
+		estatura:1.65,
+		peso:59,
+		medidas:"86-56-89",
+		nacionalidad:"Mexicana",
+		viajes:true,
+		cenas:true,
+		like:false,
+		rejected:false,
+		mensajes:4,
+		time:"12:34am"
+	}
+	$scope.edit=function(){
+		Message.showModal("screens/modal/ubicacion.html",null,$scope);
+	}
+	$scope.added=false;
+	$scope.showImage=false;
+	$scope.imgShowImage=0;
+	$scope.precios=function(){
+		Message.alert("Precios","<div class='precio-perfil' style='margin-top:2vh;'>Cena: $3,000</div><div  class='precio-perfil'>Compañia completa: $8,000</div>");
+	}
+	$scope.like=function(){
+		$scope.added=true;
+	}
+	$scope.chat=function(){
+		$ionicViewSwitcher.nextDirection('forward');
+		$state.go("app.chat",{user:$scope.perfilUsuario});
+	}
+	$scope.openimg=function(id){
+		$scope.showImage=true;
+		$scope.imgShowImage=id;
+	}
+	$scope.closeImg=function(){
+		$scope.showImage=false;
+	}
+	$scope.goBack=function(){
+		$ionicViewSwitcher.nextDirection('back');
+		if($scope.back==null)$state.go("app.home");
+		else $state.go($scope.back,{user:$scope.perfilUsuario});
+	}
+	$scope.exitModal=function(){
+			Message.hideModal();
+	}
+})

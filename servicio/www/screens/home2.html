@@ -1,0 +1,31 @@
+<ion-view view-title="Home" class="home-view" can-swipe-back="false">
+	<ion-header-bar align-title="left" class="bar-main-header">
+		<div class="buttons">
+			<button class="button button-icon button-clear ion-navicon" ng-click="ajustes()"></button>
+		</div>
+		<div class="header-logo"></div>
+		<div class="buttons right">
+			<button class="button button-icon button-clear ion-chatbubble-working" ng-click="chats()"></button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="main-content" has-bouncing="false" scroll="false" >
+    	<div class="reload-elements" ng-show="available.length==0" ng-click="refreshBitches()"> <i class="icon ion-android-refresh"></i></div>
+  		<div class="home-card" ng-repeat="bitch in available" id="card{{bitch.id}}">
+        	<div class="profile">
+            	<div class="foto" ng-click="perfil(bitch)" style="background: url(img/profiles/prof{{bitch.id}}.jpg)" ></div>
+                <div class="like left" ng-click="dislikeb(bitch)"> <i class="icon ion-close"></i></div>
+                <div class="like" ng-click="likeb(bitch)"><i class="icon ion-android-favorite"></i></div>
+                <div class="nombre" ng-click="perfil(bitch)">
+                	<div class="text">{{bitch.nombre}}</div>
+                    <div class="circulo">
+                    	<div>24</div>
+                        <div>años</div>
+                    </div>
+                </div>
+            </div>
+            <div class="info" ng-click="perfil(bitch)">
+            	<div>{{bitch.ad}}</div>
+            </div>
+        </div>
+	</ion-content>
+</ion-view>

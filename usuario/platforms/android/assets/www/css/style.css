@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* CSS Document */
+@import "font-awesome.min.css";
+@import "../lib/flaticons/flaticon.css";
+@import "../lib/ionic/css/ionic.css";
+@import "../lib/ionic-material/dist/ionic.material.css";
+@import "general.css";
+@import "screens/login.css";
+@import "screens/home.css";
+@import "screens/modal/menu.css";
+@import "screens/perfil.css";
+@import "screens/chats.css";
+@import "screens/modal/solicitar.css";
+/*@import "imgs.css";*/

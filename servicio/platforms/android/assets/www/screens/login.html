@@ -1,0 +1,17 @@
+<ion-view view-title="Login" class="login-view" can-swipe-back="false">
+	<ion-content class="padding" has-bouncing="false" scroll="true">
+  		<div class="logo"></div>
+        <div>
+        	<div class="input-container">
+            	<i class="icon ion-ios-email"></i>
+                <input name="n" placeholder="{{dictionary.Login[1]}}" type="text" ng-model="user.user">
+            </div>
+            <div class="input-container" style="border-top:none">
+            	<i class="icon ion-android-lock"></i>
+                <input placeholder="{{dictionary.Login[2]}}" type="password" ng-model="user.password">
+            </div>
+            <button class="login" ng-click="login()">{{dictionary.Login[3]}}</button>
+            <button class="settings"><i class="icon ion-gear-a"></i></button>
+        </div>
+	</ion-content>
+</ion-view>

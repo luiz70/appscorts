@@ -1,0 +1,24 @@
+﻿<ion-modal-view class="modal-solicitar" ng-controller="Solicitar">
+    <ion-header-bar  class="header-bar-menu">
+    	<div class="buttons">
+			<button class="button button-clear" ng-click="exitModal()">Cancelar</button>
+		</div>
+        <div class="buttons r">
+			<button class="button button-clear" ng-click="aceptServicio()" >Aceptar</button>
+		</div>
+    </ion-header-bar>
+    <div class="user-info">
+    	<div class="foto" style="background:url(img/profiles/prof{{chatUser.id}}.jpg)"></div>
+        <div class="title">{{chatUser.nombre}}</div>
+        <div class="edad">{{chatUser.edad}} años</div>
+    </div>
+    <ion-content class="" has-bouncing="false">
+        <div class="text-info">A partir de la solicitud del servicio se realiza el cargo de la primera hora, 15 minutos antes de terminar la primera hora el sistema notifica para que ambos aprueben el siguiente servicio, de lo contrario se termina.</div>
+        <div class="titulo-info">Seleccione el servicio</div>
+        <div class="option-info" ng-repeat="servicio in servicios" ng-class="{'selected':servicio.selected}" ng-click="seleccionarServicio($index)">{{servicio.descripcion}}: ${{servicio.precio}}<i class="icon ion-ios-checkmark"></i></div>
+        <div class="titulo-info">Seleccione el método de pago</div>
+        <div class="option-info" ng-repeat="pago in pagos" ng-class="{'selected':pago.selected}" ng-click="seleccionarPago($index)">Tarjeta: {{pago.terminacion}}
+        <i class="icon ion-ios-checkmark"></i></div>
+        <div class="text-info" style="text-align:center;color:#CBCBCB">Consulta nuestros términos y condiciones</div>
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,251 @@
+@charset "utf-8";
+.perfil-view .fullScreenImg{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: rgba(0, 0, 0, 0.87);
+    z-index: 100000;
+}
+.perfil-view .fullScreenImg>button{
+	position: absolute;
+    top: 1vh;
+    right: 1vh;
+    background: none;
+    color: #C1C1C1;
+    font-size: 4vh;
+}
+.perfil-view .fullScreenImg>div{
+    position: absolute;
+    top: 7vh;
+    left: 3vh;
+    right: 3vh;
+    bottom: 7vh;
+	background-size:contain !important;
+	background-repeat:no-repeat !important;
+	background-position:center !important;
+	
+}
+.perfil-view ion-header-bar h1.title{
+    font-size: 5vh !important;
+    font-weight: 300 !important;
+    font-style: italic;
+    color: #F1F1F1 !important;
+}
+.perfil-view ion-header-bar div.edad-header{
+	top: 0px !important;
+    position: absolute;
+    right: 2vh;
+    max-width: 100vw !important;
+    width: auto !important;
+    font-style: italic;
+    font-size: 2.8vh !important;
+    height: 10vh !important;
+    line-height: 10vh;
+    color: #D4D4D4;
+}
+.perfil-view .home-card{
+	position: absolute;
+    left: 0px;
+    bottom: 0px;
+    top: 0px;
+	right:0px;
+}
+.perfil-view .home-card .profile{
+    width: 100%;
+    position: relative;
+    float: left;
+    height: 60vh;
+    z-index: 2;
+}
+.perfil-view .home-card .profile .foto{
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-size: cover !important;
+    background-position: center top !important;
+    background-repeat: no-repeat !important;
+    opacity: 0.9;
+}
+.perfil-view .home-card .profile div.miniaturas{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 12vh;
+    padding: 1vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+.perfil-view .home-card .profile div.miniaturas::-webkit-scrollbar { 
+    /*display: none; */
+}
+.perfil-view .home-card .profile div.miniaturas>div{
+    background-size: cover !important;
+    background-position: top center !important;
+    width: 10vh;
+    height: 10vh;
+    margin-left: 0.5vh;
+    margin-right: 0.5vh;
+    border: solid 1px #4D4D4D;
+    display: inline-block;
+}
+.perfil-view .home-card .profile button.solicitar{
+	position: absolute;
+    bottom: 14vh;
+    left: 2vh;
+    width: calc(50vw - 4vh);
+    padding: 1vh;
+    border-radius: 4px !important;
+    background: #181818;
+    color: #fff;
+    font-size: 3vh;
+    opacity: 0.9;
+}
+.perfil-view .home-card .profile button.precios{
+	position: absolute;
+    bottom: 14vh;
+    right: 2vh;
+    width: calc(50vw - 4vh);
+    padding: 1vh;
+    border-radius: 4px !important;
+    background: #FFFFFF;
+    color: #2B2B2B;
+    font-size: 3vh;
+    opacity: 0.9;
+}
+.perfil-view .home-card .profile button.like{
+	position: absolute;
+    top: 1vh;
+    right: 1vh;
+    width: 8vh;
+    height: 8vh;
+    border-radius: 100% !important;
+    background: #fff;
+    opacity: 0.8;
+}
+.perfil-view .home-card .profile button.like>i{
+	position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    width: 4vh;
+    height: 3.5vh;
+    text-align: center;
+	
+}
+.perfil-view .home-card .profile button.like>i:before{
+	font-size: 4vh;
+    height: 4vh;
+    color: #181818;
+}
+.perfil-view .home-card .profile button.like>i.chat:before{
+	color:#1E1E1E;
+}
+.precio-perfil{
+	text-align: left;
+    font-size: 3vh;
+    height: 4vh;
+    line-height: 4vh;
+}
+.perfil-view .home-card .info{
+    width: 100%;
+    position: relative;
+    float: left;
+    height: auto;
+    background: none;
+    padding: 2vh;
+}
+.perfil-view .home-card .info div.aboutme{
+}
+.perfil-view .home-card .info div.aboutme div.title{
+    position: relative;
+    float: left;
+    font-size: 3.5vh;
+    color: #fff;
+    width: calc(40vw - 2vh);
+    height: 5.5vh;
+}
+.perfil-view .home-card .info div.aboutme .icons{
+    position: relative;
+    float: right;
+    width: auto;
+    height: 5.5vh;
+    text-align: center;
+	max-width:calc(60vw - 2vh);
+	margin-top: -0.5vh;
+	overflow: visible;
+}
+/*.perfil-view .home-card .info div.aboutme .icons>i{
+    position: relative;
+    float: left;
+    color: #FFFFFF;
+    height: 4vh;
+    width: 6vw;
+    margin-right: 1vh;
+}
+.perfil-view .home-card .info div.aboutme .icons>i:before{
+    margin: 0px !important;
+    font-size: 6vw;
+}
+*/
+.toggle .track{
+	background-color:#D9D9D9 ;
+}
+.disabl{
+	opacity:0.2;
+}
+.perfil-view .home-card .info div.aboutme .icons>div{
+    border: none;
+    overflow: visible;
+    padding: 0px 70px 0px 0px;
+    font-size: 3vh;
+    color: #fff;
+    height: 5vh;
+    line-height: 5vh;
+}
+.perfil-view .home-card .info div.aboutme .icons>div>label{
+       position:absolute;
+	   top:0px;
+	   right: 0px;
+}
+.perfil-view .home-card .info div.aboutme>.content{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: auto;
+    color: #E5E5E5;
+    font-size: 3vh;
+    font-weight: 300;
+    padding-bottom: 1vh;
+    border-bottom: solid 1px #2A2A2A;
+}
+.perfil-view .home-card .info div.aboutme>.description>.element{
+	position:relative;
+	float:left;
+	width:auto;
+    margin-right: 2vh;
+}
+.perfil-view .home-card .info div.aboutme>.description>.element>button{
+    width: auto;
+    float: left;
+    position: relative;
+    background: none;
+    color: #EAEAEA;
+    font-size: 3vh;
+    font-weight: 300;
+    margin-right: 1vh;
+    padding: 0px;
+}
+.perfil-view .home-card .info div.aboutme>.description>.element>button.title{
+    font-weight: 400;
+}
+.perfil-view .home-card .info div.aboutme>.description>.element>button.datos{
+    font-weight: 300;
+}

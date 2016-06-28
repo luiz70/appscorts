@@ -1,0 +1,24 @@
+<ion-modal-view class="modal-lock" ng-controller="Lock">
+    <ion-header-bar  class="header-bar-lock">
+    	<div class="buttons">
+			<button class="button button-clear" ng-click="logout()">Cerrar sesión</button>
+		</div>
+    </ion-header-bar>
+    <ion-content class="lock-contenido content-header-auto " has-bouncing="false" scroll="false">
+    <div class="encabezado">
+    	<div class="logo"></div>
+        <div class="numeros">
+        	<div ng-repeat="code in lockCode"><div ng-class="{'selected': code.val!=null}"></div></div>
+        </div>
+        <div class="info-lock" ng-show="errorCode">Codigo incorrecto</div>
+        <div class="info-lock extra" ng-show="errorCode">{{restantes}} Intentos restantes</div>
+    </div>
+    <div class="pad-num">
+    	<button ng-repeat="num in [1,2,3,4,5,6,7,8,9]" ng-click="lockNumber(num)">{{num}}</button>
+        <button ng-click="lockNumber(num)"></button>
+        <button ng-click="lockNumber(num)">0</button>
+        <button ng-click="lockDelete()"><i class="icon ion-backspace"></i></button>
+    </div>
+        
+    </ion-content>
+</ion-modal-view>

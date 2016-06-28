@@ -1,0 +1,23 @@
+<ion-view view-title="Chats" class="chat-view"  id="vista-chat" can-swipe-back="false">
+	<ion-header-bar align-title="left" class="bar-main-header">
+		<div class="buttons">
+			<button class="button button-icon button-clear ion-ios-arrow-left" ng-click="closeChat()"></button>
+		</div>
+		<h1 class="title perfil">{{chatUser.nombre}}</h1>
+		<div class="buttons right">
+			<button class="button button-icon button-clear ion-android-more-vertical" ng-click="showOptions()" ></button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="main-content" has-bouncing="true" scroll="true">
+  		<ion-list can-swipe="false">
+            <ion-item  class="item-avatar item-chat item-conver " ng-repeat="message in messages" ng-class="{'cliente':message.user==2}" >
+                <div class="h2"><div class="texto">{{message.text}}</div><div class="hora">{{message.time}}</div></div>
+            </ion-item>
+            
+        </ion-list>
+	</ion-content>
+    <div class="chat-footer">
+    	<textarea placeholder="Escribir mensaje" rows="1" ng-model="inputChat"></textarea>
+        <button ng-click="sendMsg()"><i class="icon ion-android-send"></i></button>
+    </div>
+</ion-view>

@@ -1,0 +1,87 @@
+@charset "utf-8";
+.login-view ion-content>div>div{
+	width:100%;
+	padding:0vh 5vh;
+	text-align:center;
+	position:relative;
+	position: relative;
+    float: left;
+    height: 45vh;
+}
+.login-view ion-content>div>div.logo{
+	width:100%;
+	height:auto;
+	background-image:url(../../img/logo_login.png);
+	background-position:center;
+	background-size:60%;
+	background-repeat:no-repeat;
+    height: 50vh;
+}
+.login-view ion-content>div>div>div.input-container{
+	width: 100%;
+    padding: 2vh 2vh 2vh 8vh;
+    border-top: solid 1px #383838;
+    border-bottom: solid 1px #383838;
+    height: 8vh;
+	position:relative;
+	float:left;
+	top: 0px;
+}
+.login-view ion-content>div>div>div.input-container>i{
+	position: absolute;
+    color: #F7D02D;
+    left: 0px;
+    font-size: 4vh;
+    margin: auto;
+    top: 0px;
+    bottom: 0px;
+    height: 4vh;
+    right: calc(100% - 8vh);
+    width: 4vh;
+}
+.login-view ion-content>div>div>div.input-container>input{
+	background: none;
+    border: none;
+    width: 100%;
+    color: #D4D4D4;
+    font-size: 3vh;
+    line-height: 4vh;
+    height: 4vh;
+    font-weight: 100;
+}
+.login-view ion-content>div>div>div.input-container>input::-webkit-input-placeholder{
+	color:#F7D02D;
+	font-weight: 100;
+}
+.login-view ion-content>div>div>button.login{
+	padding: 1.5vh;
+    width: 100%;
+    font-size: 3vh;
+    margin-top: 8vh;
+    left: 0px;
+    right: 0px;
+    background: #ABABAB;
+    color: #181818;
+    font-weight: bold;
+	height: auto;
+}
+.login-view ion-content>div>div>div{
+	position: absolute;
+    bottom: 2vh;
+    width: calc(100% - 10vh);
+    text-align: center;
+    font-size: 2.8vh;
+    color: rgba(230, 179, 3, 0.71);
+    font-weight: 100;
+}
+.login-view ion-content>div>div>button.settings{
+	position: absolute;
+    left: 1vh;
+    bottom: 1vh;
+    width: 6vh;
+    height: 6vh;
+    border-radius: 100% !important;
+    background: #383838;
+    font-size: 4.5vh;
+    color: #181818;
+}

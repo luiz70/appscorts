@@ -1,0 +1,70 @@
+<ion-view view-title="Perfil" class="perfil-view home-view" can-swipe-back="false">
+	<ion-header-bar align-title="left" class="bar-main-header">
+		<div class="buttons">
+			<button class="button button-icon button-clear ion-navicon" ng-click="ajustes()"></button>
+		</div>
+		<div class="header-logo"></div>
+		<div class="buttons right">
+			<button class="button button-icon button-clear ion-chatbubble-working" ng-click="openChats()" ng-class="{'disabl':!online.is}"></button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="main-content" has-bouncing="false" scroll="true">
+  		<div class="home-card">
+        	<div class="profile">
+            	<div class="foto" style="background: url(img/profiles/prof{{perfilUsuario.id}}.jpg)" ng-click="openimg('img/profiles/prof{{perfilUsuario.id}}.jpg')"></div>
+                <div class="miniaturas" >
+                	<div ng-repeat="i in [1,2,3,4,5]" style="background: url(img/mini/{{perfilUsuario.id}}_{{i}}.jpg)" ng-click="openimg('img/mini/{{perfilUsuario.id}}_{{i}}.jpg')"></div>
+                </div>
+                <!--button class="solicitar" ng-click="solicitar()">Solicitar</button-->
+                <button class="like" ng-click="edit()" ng-hide="added"><i class="icon ion-edit"></i></button>
+            </div>
+            <div class="info " >
+            	<div class="aboutme">
+                	<div class="title">Sobre mí</div>
+                    <div class="icons">
+                    	<!--i class="glyph-icon flaticon-fashion" ></i>
+                        <div>3</div>
+                    	<i class="glyph-icon flaticon-shapes" style="color: #EA4095;"></i>
+                        <div>5</div>
+                    	<i class="glyph-icon flaticon-nature" style="color: #40A2EA;;"></i>
+                        <div>4</div-->
+                        <ion-toggle ng-model="online.is" toggle-class="toggle-energized">{{online.is?'conectado':'desconectado'}}</ion-toggle>
+                    </div>
+                    <div class="content">
+                    {{perfilUsuario.about}}
+                    </div>
+                    <div class="description">
+                    	<div class="element">
+                    		<button class="title">Estatura:</button>
+                            <button class="datos">{{perfilUsuario.estatura}}m</button>
+                        </div>
+                        <div class="element">
+                    		<button class="title">Peso:</button>
+                            <button class="datos">{{perfilUsuario.peso}}k</button>
+                        </div>
+                        <div class="element">
+                    		<button class="title">Medidas:</button>
+                            <button class="datos">{{perfilUsuario.medidas}}</button>
+                        </div>
+                        <div class="element">
+                    		<button class="title">Nacionalidad:</button>
+                            <button class="datos">{{perfilUsuario.nacionalidad}}</button>
+                        </div>
+                        <div class="element">
+                    		<button class="title">Disponibilidad de viaje:</button>
+                            <button class="datos">{{perfilUsuario.viajes?'sí':'no'}}</button>
+                        </div>
+                        <div class="element">
+                    		<button class="title">Cenas:</button>
+                            <button class="datos">{{perfilUsuario.cenas?'sí':'no'}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</ion-content>
+    <div class="ng-hide fullScreenImg" ng-show="showImage">
+    	<div style="background:url({{imgShowImage}});"></div>
+        <button ng-click="closeImg()"><i class="icon ion-android-close"></i></button>
+    </div>
+</ion-view>

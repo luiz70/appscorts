@@ -1,0 +1,12 @@
+<ion-modal-view class="modal-espera" >
+    <ion-content class="" has-bouncing="false">
+       <div class="user-info">
+    		<div class="foto" style="background:url(img/profiles/prof{{chatUser.id}}.jpg)"></div>
+            <div class="title">{{chatUser.nombre}}</div>
+            <div class="edad">{{chatUser.edad}} años</div>
+    	</div>
+        <div class="time-info"><timer countdown="time" interval="1000" >{{hours}}:{{minutes}}:{{seconds}}</timer></div>
+        <button class="cancel-service" ng-click="addServicio();" style="margin-top: 10vh;background:rgb(247, 208, 45);color:#000;">Incrementar servicio</button>
+        <button class="cancel-service" ng-click="cancelarServicio();" style="margin-top: 2vh;">Cancelar servicio</button>
+    </ion-content>
+</ion-modal-view>

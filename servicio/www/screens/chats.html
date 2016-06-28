@@ -1,0 +1,23 @@
+<ion-view view-title="Chats" class="chats-view" can-swipe-back="false">
+	<ion-header-bar align-title="left" class="bar-main-header">
+		<div class="buttons">
+			<button class="button button-icon button-clear ion-ios-arrow-left" ng-click="home()"></button>
+		</div>
+		<h1 class="title perfil">Chats</h1>
+		<div class="buttons right">
+			<button class="button button-icon button-clear ion-android-more-vertical" ng-click="openOptions()" ></button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="main-content" has-bouncing="true" scroll="true">
+  		<ion-list can-swipe="false">
+            <ion-item  class="item-avatar item-chat" ng-repeat="bitch in bitches" >
+                <div class="img" style="background: url(img/profiles/profmr.png);"></div>
+                <div class="hora">{{bitch.time}}<i class="icon ion-ios-arrow-right"></i></div>
+                <h2>{{bitch.nombre}}</h2>
+      			<p>{{bitch.mensajes>0?bitch.mensajes+' mensajes sin leer':'No hay mensajes pendientes'}}</p>
+                <div class="cover" ng-click="openChat(bitch);"></div>
+            </ion-item>
+            
+        </ion-list>
+	</ion-content>
+</ion-view>

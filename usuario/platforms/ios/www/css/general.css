@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* NORMAL*/
+* {
+	font-family: "Helvetica Neue", "Roboto", Sans-Serif !important;
+}
+body,html,ion-content{
+	    background-color: #181818 !important;
+}
+#app_content.invisible{
+	opacity:0 !important;
+}
+
+.elipsis{
+	text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    word-wrap: initial !important;
+}
+.unselect{
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+button{
+	border:none !important;
+	border-radius:0px !important;
+	-webkit-appearance: none !important;
+	text-transform:none !important;
+	-webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+	backface-visibility:hidden;
+}
+input{
+	border-radius: 0px !important;
+}

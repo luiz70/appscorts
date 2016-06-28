@@ -1,0 +1,17 @@
+<ion-view view-title="Registro" class="registro-view" can-swipe-back="false">
+	<ion-header-bar  class="header-bar-menu">
+    	<div class="buttons texto">
+			<button class="button button-clear"  nav-direction="back" ui-sref="login">Cancelar</button>
+		</div>
+        <h1 class="title">Contraseña</h1>
+        <div class="buttons r texto">
+			<button class="button button-clear right" ng-click="recuperar()">Recuperar</button>
+		</div>
+    </ion-header-bar>
+	<ion-content class="padding" has-bouncing="false" scroll="true">
+    <div class="logo-registro"></div>
+    <div class="texo-informativo padding5">Proporcione su correo electrónico registrado para recuperar su contraseña</div>
+  		<input class="input-box" placeholder="Correo electrónico" type="email" ng-model="Recuperacion.Correo">
+        
+	</ion-content>
+</ion-view>
