@@ -9,9 +9,9 @@
 	<ion-content class="main-content" has-bouncing="false" scroll="true">
   		<div class="home-card">
         	<div class="profile">
-            	<div class="foto" style="background: url(img/profiles/prof{{perfilUsuario.id}}.jpg)" ng-click="openimg('img/profiles/prof{{perfilUsuario.id}}.jpg')"></div>
+            	<div class="foto" style="background: url(img/profiles/prof{{perfilUsuario.id}}.jpg)" ng-click="openimg(0)"></div>
                 <div class="miniaturas" >
-                	<div ng-repeat="i in [1,2,3,4,5]" style="background: url(img/mini/{{perfilUsuario.id}}_{{i}}.jpg)" ng-click="openimg('img/mini/{{perfilUsuario.id}}_{{i}}.jpg')"></div>
+                	<div ng-repeat="i in [1,2,3,4,5]" style="background: url(img/mini/{{perfilUsuario.id}}_{{i}}.jpg)" ng-click="openimg(i)"></div>
                 </div>
                 <!--button class="solicitar" ng-click="solicitar()">Solicitar</button-->
                 <button class="precios" ng-click="precios()">Precios</button>

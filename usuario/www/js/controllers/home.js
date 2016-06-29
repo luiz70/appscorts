@@ -37,6 +37,7 @@
 		time:"1:33pm"
 	}
 	]
+$scope.allbitches=Array.prototype.slice.call(cardTypes, 0)
 
  $scope.cards = {
     master: Array.prototype.slice.call(cardTypes, 0),
@@ -47,36 +48,48 @@
   }
 
   $scope.cardDestroyed = function(index) {
-    $scope.cards.active.splice(index, 1);
+	//$scope.allbitches.splice(index,1);
+    //$scope.cards.active.splice(index, 1);
   };
 
   $scope.addCard = function() {
     var newCard = cardTypes[0];
     $scope.cards.active.push(angular.extend({}, newCard));
   }
-
+$scope.reloadCards=function(){
+	$timeout(function() {
+	$scope.allbitches = Array.prototype.slice.call(cardTypes, 0)
+	})
+}
   $scope.refreshCards = function() {
     // Set $scope.cards to null so that directive reloads
-    $scope.cards.active = null;
+    $scope.allbitches = null;
     $timeout(function() {
-      $scope.cards.active = Array.prototype.slice.call($scope.cards.master, 0);
+      $scope.allbitches = Array.prototype.slice.call(cardTypes, 0)
+	  console.log($scope.allbitches);
     },1000);
   }
-
+  
   $scope.$on('removeCard', function(event, element, card) {
-    var discarded = $scope.cards.master.splice($scope.cards.master.indexOf(card), 1);
-    $scope.cards.discards.push(discarded);
+    //var discarded = $scope.cards.master.splice($scope.cards.master.indexOf(card), 1);
+    //$scope.cards.discards.push(discarded);
   });
 
   $scope.cardSwipedLeft = function(index) {
     console.log('LEFT SWIPE');
-    var card = $scope.cards.active[index];
-    $scope.cards.disliked.push(card);
+    //var card = $scope.cards.active[index];
+    //$scope.cards.disliked.push(card);
+	$timeout(function() {
+	$scope.allbitches.splice(index,1);
+	})
   };
   $scope.cardSwipedRight = function(index) {
     console.log('RIGHT SWIPE');
-    var card = $scope.cards.active[index];
-    $scope.cards.liked.push(card);
+    //var card = $scope.cards.active[index];
+    //$scope.cards.liked.push(card);
+	$timeout(function() {
+	$scope.allbitches.splice(index,1);
+	});
   };
 
 

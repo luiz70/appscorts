@@ -236,3 +236,51 @@
 .perfil-view .home-card .info div.aboutme>.description>.element>button.datos{
     font-weight: 300;
 }
+ion-modal-view.modal-fotos{
+	    background: rgba(0, 0, 0, 0.89) !important;
+}
+ion-modal-view.modal-fotos>ion-content{
+	background:none !important;
+}
+ion-modal-view.modal-fotos>ion-content>div.slider{
+	height:100%;
+}
+ion-modal-view.modal-fotos>ion-content>button.cerrar-fotos{
+	    position: absolute;
+    top: 2vh;
+    right: 1vh;
+    width: 6vh;
+    height: 6vh;
+    color: #c3c3c3;
+    font-size: 4vh;
+    background: none;
+}
+ion-modal-view.modal-fotos>ion-content>div.slider .full-img{
+	    width: 90vw;
+    height: 80vh;
+	background-position:center !important;
+	background-size:contain !important;
+	background-repeat:no-repeat !important;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+}
+ion-modal-view.modal-fotos>ion-content>div.miniaturas_fotos{
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	height:10vh;
+	text-align:center;
+	padding-top:2.5vh;
+}
+ion-modal-view.modal-fotos>ion-content>div.miniaturas_fotos>button{
+	width: 5vh;
+    height: 5vh;
+    margin-left: 1vh;
+	background-position:center-top !important;
+	background-size:cover !important;
+}
