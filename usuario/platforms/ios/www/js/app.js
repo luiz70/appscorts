@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires''starter.services',
-angular.module('starter', ['ionic', 'controllers','ionic-material', 'ngCordova','ngAnimate',"ngTouch",'uiGmapgoogle-maps','LocalStorageModule','ngError'])
+angular.module('starter', ['ionic', 'controllers','ionic-material', 'ngCordova','ngAnimate',"ngTouch",'uiGmapgoogle-maps','LocalStorageModule','ngError','services','timer','ionic.contrib.ui.tinderCards2'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -20,8 +20,8 @@ angular.module('starter', ['ionic', 'controllers','ionic-material', 'ngCordova',
     }
     if(window.StatusBar) {
         StatusBar.overlaysWebView(false);
-        StatusBar.backgroundColorByHexString("#cdf030");
-        StatusBar.styleBlackOpaque();
+        StatusBar.backgroundColorByHexString("#000000");
+        StatusBar.styleLightContent();
         StatusBar.show();
     }
 	$ionicPlatform.registerBackButtonAction(function (event) {
@@ -33,7 +33,7 @@ angular.module('starter', ['ionic', 'controllers','ionic-material', 'ngCordova',
 	uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyA9Pf6xs5oXGWmLsxZizEUdQMLrzR-mSmA',
         libraries: 'places',
-        preventLoad: true,
+        preventLoad: false,
 		transport:"https"
     });
 	$ionicConfigProvider.views.maxCache(10);
@@ -45,16 +45,21 @@ angular.module('starter', ['ionic', 'controllers','ionic-material', 'ngCordova',
 	$ionicConfigProvider.form.checkbox("circle")
 	// LocalStorage config
 	localStorageServiceProvider
-	.setPrefix('smartParking')
+	.setPrefix('com.app.news')
 	.setStorageType('localStorage');
   
 	$stateProvider.state('app', {
 		url: '/app',
         abstract: true,
-        templateUrl: 'screens/app.html',
-        controller: 'Application'
+		cache:false,
+		views:{
+			'contenido-app':{
+       			templateUrl: 'screens/app.html',
+				controller:'Aplicacion'
+			}
+		}
     })
-	.state('app.login', {
+	.state('login', {
         url: '/login',
         views: {
             'contenido-app': {
@@ -62,6 +67,72 @@ angular.module('starter', ['ionic', 'controllers','ionic-material', 'ngCordova',
                 controller: 'Login'
             },
         }
+    })
+	.state('registro', {
+        url: '/registro',
+        views: {
+            'contenido-app': {
+                templateUrl: 'screens/registro.html',
+                controller: 'Registro'
+            },
+        }
+    })
+	.state('recuperar', {
+        url: '/recuperar',
+		params:{
+			Correo:null
+		},
+        views: {
+            'contenido-app': {
+                templateUrl: 'screens/recuperar.html',
+                controller: 'Recuperar'
+            },
+        }
+    })
+	.state('app.home', {
+        url: '/home',
+        views: {
+            'contenido-home': {
+                templateUrl: 'screens/home.html',
+                controller: 'Home'
+            }
+        }
+    })
+	.state('app.perfil', {
+        url: '/perfil',
+		cache:false,
+        views: {
+            'contenido-home': {
+                templateUrl: 'screens/perfil.html',
+                controller: 'Perfil'
+            }
+        },
+		params: {
+     		user: null,
+			back:null,
+   		},
+    })
+	.state('app.chats', {
+        url: '/chats',
+        views: {
+            'contenido-home': {
+                templateUrl: 'screens/chats.html',
+                controller: 'Chats'
+            }
+        }
+    })
+	.state('app.chat', {
+        url: '/chat',
+        views: {
+            'contenido-home': {
+                templateUrl: 'screens/chat.html',
+                controller: 'Chat'
+            }
+        },
+		cache:false,
+		params: {
+     		user: null
+   		},
     })
 	/*.state('app.registro', {
         url: '/registro',
@@ -160,5 +231,5 @@ angular.module('starter', ['ionic', 'controllers','ionic-material', 'ngCordova',
             },
         }
     })*/
-	$urlRouterProvider.otherwise('/app/login');
+	$urlRouterProvider.otherwise('/login');
 })

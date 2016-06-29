@@ -8,28 +8,28 @@
     },
     "installed_plugins": {
         "com.phonegap.plugins.PushPlugin": {
-            "PACKAGE_NAME": "com.smart.parking"
+            "PACKAGE_NAME": "com.app.scorts"
         },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.smart.parking"
+            "PACKAGE_NAME": "com.app.scorts"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.smart.parking"
+            "PACKAGE_NAME": "com.app.scorts"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.smart.parking"
+            "PACKAGE_NAME": "com.app.scorts"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.smart.parking"
+            "PACKAGE_NAME": "com.app.scorts"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.smart.parking"
+            "PACKAGE_NAME": "com.app.scorts"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.smart.parking"
+            "PACKAGE_NAME": "com.app.scorts"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.smart.parking"
+            "PACKAGE_NAME": "com.app.scorts"
         }
     },
     "dependent_plugins": {}

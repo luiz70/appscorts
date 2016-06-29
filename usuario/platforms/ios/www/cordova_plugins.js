@@ -92,6 +92,15 @@ module.exports = [
 ];
 module.exports.metadata = 
 // TOP OF METADATA
-{}
+{
+    "com.phonegap.plugins.PushPlugin": "2.5.0",
+    "cordova-plugin-console": "1.0.2",
+    "cordova-plugin-device": "1.1.1",
+    "cordova-plugin-geolocation": "2.1.0",
+    "cordova-plugin-splashscreen": "3.1.0",
+    "cordova-plugin-statusbar": "2.1.2",
+    "cordova-plugin-whitelist": "1.2.1",
+    "ionic-plugin-keyboard": "1.0.8"
+}
 // BOTTOM OF METADATA
 });

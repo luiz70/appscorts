@@ -1,29 +1,30 @@
 @charset "utf-8";
-
-.login-view ion-content{
-	display:flex;
-	flex-direction: column;
-	 flex-flow:column nowrap;
-	 flex-wrap:nowrap;
-}
-.login-view ion-content>div{
-	flex: 1;
-    display: flex;
+.login-view ion-content>div>div{
 	width:100%;
 	padding:0vh 5vh;
-	flex-direction: column;
 	text-align:center;
 	position:relative;
+	position: relative;
+    float: left;
+    height: 45vh;
 }
-.login-view ion-content>div.logo{
+.login-view ion-content>div>div.logo{
 	width:100%;
 	height:auto;
-	background-image:url(../../img/logo.png);
+	background-image:url(../../img/logo_login.png);
 	background-position:center;
-	background-size:90%;
+	background-size:60%;
 	background-repeat:no-repeat;
+    height: 50vh;
 }
-.login-view ion-content>div>div.input-container{
+.recuperar-contrasena{
+	position: relative;
+    float: right;
+    font-size: 2.5vh;
+    color: #929292;
+    margin-top: 1vh;
+}
+.login-view ion-content>div>div>div.input-container{
 	width: 100%;
     padding: 2vh 2vh 2vh 8vh;
     border-top: solid 1px #383838;
@@ -31,10 +32,11 @@
     height: 8vh;
 	position:relative;
 	float:left;
+	top: 0px;
 }
-.login-view ion-content>div>div.input-container>i{
+.login-view ion-content>div>div>div.input-container>i{
 	position: absolute;
-    color: #cdf030;
+    color: #E6B303;
     left: 0px;
     font-size: 4vh;
     margin: auto;
@@ -44,14 +46,7 @@
     right: calc(100% - 8vh);
     width: 4vh;
 }
-.login-view ion-content>div>div.input-container>i.ion-car-smart{
-	-webkit-mask-image: url("../../img/car.png");
-    -webkit-mask-size: contain;
-    background: #cdf030;
-    -webkit-mask-position: center;
-    -webkit-mask-repeat: no-repeat;
-}
-.login-view ion-content>div>div.input-container>input{
+.login-view ion-content>div>div>div.input-container>input{
 	background: none;
     border: none;
     width: 100%;
@@ -61,10 +56,11 @@
     height: 4vh;
     font-weight: 100;
 }
-.login-view ion-content>div>div.input-container>input::-webkit-input-placeholder{
-	color:#cdf030;
+.login-view ion-content>div>div>div.input-container>input::-webkit-input-placeholder{
+	color:#E6B303;
+	font-weight: 100;
 }
-.login-view ion-content>div>button.login{
+.login-view ion-content>div>div>button.login{
 	padding: 1.5vh;
     width: 100%;
     font-size: 3vh;
@@ -74,17 +70,21 @@
     background: #ABABAB;
     color: #181818;
     font-weight: bold;
+	height: auto;
 }
-.login-view ion-content>div>div{
-	position: absolute;
+.login-view ion-content>div>div>button.registro{
+    position: absolute;
     bottom: 2vh;
     width: calc(100% - 10vh);
     text-align: center;
-    font-size: 2.5vh;
-    color: #8BA70C;
+    font-size: 2.8vh;
+    color: rgba(230, 179, 3, 0.71);
     font-weight: 100;
+    background: none;
+    left: 5vh;
+
 }
-.login-view ion-content>div>button.settings{
+.login-view ion-content>div>div>button.settings{
 	position: absolute;
     left: 1vh;
     bottom: 1vh;
@@ -94,4 +94,51 @@
     background: #383838;
     font-size: 4.5vh;
     color: #181818;
+}
+.texo-informativo{
+	    position: relative;
+    float: left;
+    padding: 1vh;
+    font-size: 2.4vh;
+    text-align: center;
+    line-height: 3vh;
+    color: #E8E8E8;
+    font-weight: 300;
+    border-bottom: solid 1px #D6AC02;
+}
+.logo-registro{
+    position: relative;
+    float: left;
+    width: 100%;
+        height: 18vh;
+    background: url(../../img/logo_registro.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 3vh;
+}
+.texto-explicacion{
+position: relative;
+    float: left;
+    width: 100%;
+    font-size: 2vh;
+    color: #E6B303;
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+    border-bottom: solid 1px #383838;
+}
+
+.input-box{
+	    position: relative;
+    float: left;
+    width: 100%;
+    font-size: 3vh !important;
+    padding: 2vh 1vh !important;
+    height: 7vh !important;
+    background: none;
+    line-height: 7vh !important;
+    border: none !important;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.14) !important;
+    color: #fff !important;
+    font-weight: 200;
 }
