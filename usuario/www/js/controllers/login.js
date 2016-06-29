@@ -11,6 +11,7 @@ angular.module('controllers')
 	}
 		
 	})
+            alert(3);
 	$scope.$on('$ionicView.afterEnter',function(){
 			$timeout(function() {
 				angular.element(document.getElementById("app_content")).removeClass("invisible")
