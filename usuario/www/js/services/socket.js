@@ -1,117 +1,84 @@
 angular.module('services')
-.factory('socket', function ($rootScope,Memory,Message) {
-    var conectado=false;
-	$rootScope.socketState=true;
-	var socket ;
-	var socketFactory;
+.factory('Socket', function ($rootScope,$timeout) {
+	var socket=null;
+	var initialize=function(){
 	
-	var inicializa=function(){
+		if(!$rootScope.Usuario){
+			return false;
+		}
+		if(socket){
+			socket.removeAllListeners();
+			socket.disconnect();
+		}
+		socket=null;
+		console.log($rootScope.config.Socket.getUrl())
+		socket=io.connect($rootScope.config.Socket.getUrl(),{reconnection:true,query:"token="+$rootScope.Usuario.Token,"force new connection":true});			
 		
-		var usuario=Memory.get("Usuario")
-		//if(usuario){
-		//if(!socket){
+		socket.on("autenticated",function(val){
+		})
+		socket.on("connect",function(){
+			$timeout(function(){
+			$rootScope.conexion=true;
+			},1)
+			$rootScope.$broadcast("socket.connect",true)
+		})
+		socket.on("connect_error",function(){
+			$timeout(function(){
+			$rootScope.conexion=false;
+			},1)
+    	})
+		socket.on("reconnect",function(){
+			//$rootScope.$broadcast("socket.connect",true)
+		})
+    	socket.on("reconnect_error",function(){
+			$timeout(function(){
+			$rootScope.conexion=false;
+			},1)
+    	})
+   		socket.on("disconnect",function(){
+			$timeout(function(){
+			$rootScope.conexion=false;
+			},1)
+		})
+    	socket.on("error",function(error){
+			$timeout(function(){
+			$rootScope.conexion=false;
+			},1)
+		})
+		return socket;
+	}
+      
+    return {
+		open:function(){
+			return initialize();
+		},
+        connect:function(){
+        	if(!conectado)socket.connect();
+            return true;
+		},
+		disconnect:function(){
+			if(socket){
+				socket.disconnect();
+			}
+		},
+		emit:function(event,data){
+			data=(data==null)?{}:data;
+			if(socket)socket.emit(event,data);
+		},
+		on:function(event,funcion){
+			if(socket)socket.on(event,funcion);
+		},
+		off:function(event,funcion){
+			if(socket)socket.removeListener(event,funcion);
+		},
+		status:function(){
+			return socket.connected
+		},
+		close:function(){
 			if(socket){
 				socket.removeAllListeners();
 				socket.disconnect();
 			}
-			socket=null;
-			
-			//socket = io();
-			
-			socket=io.connect('http://sd/socket',{
-                                    reconnection:true,
-									query:{id:$rootScope.User.IdUser},
-									"force new connection":true
-            });			
-			/*socketFactory = null;
-			socketFactory = socketFactory({
-        		ioSocket: socket
-    		});*/
-		//}else socket.connect();
-		
-    
-	/*socket.on("autenticated",function(val){
-		$rootScope.socketState=val;
-		conectado=val;
-		
-	})*/
-	
-    socket.on("connect",function(){
-		$rootScope.$broadcast("socket.connect",true)
-        conectado=true;
-		$rootScope.socketState=true;
-		try{$rootScope.$apply(function(){})}catch(err){}
-		
-    })
-	/*socket.on('setLogOut',function(data){
-		if(data.Id==$rootScope.Usuario.Id && data.Log!=$rootScope.Usuario.Log){
-			//cerrar sesion
-			Message.alert($rootScope.idioma.General[0],$rootScope.idioma.Login[11],function(){
-				$rootScope.cerrarSesion();
-			})
 		}
-	})*/
-	
-	
-    socket.on("connect_error",function(){
-       $rootScope.$broadcast("socket.connect",false)
-	    conectado=false;
-		$rootScope.socketState=false;
-		try{$rootScope.$apply(function(){})}catch(err){}
-		
-    })
-    socket.on("reconnect",function(){
-		$rootScope.$broadcast("socket.connect",true)
-        conectado=true;
-		$rootScope.socketState=true;
-		try{$rootScope.$apply(function(){})}catch(err){}
-    })
-    socket.on("reconnect_error",function(){
-		$rootScope.$broadcast("socket.connect",false)
-        conectado=false;
-		$rootScope.socketState=false;
-		try{$rootScope.$apply(function(){})}catch(err){}
-    })
-    socket.on("disconnect",function(){
-		$rootScope.$broadcast("socket.connect",false)
-        conectado=false;
-		$rootScope.socketState=false;
-		try{$rootScope.$apply(function(){})}catch(err){}
-
-    })
-    socket.on("error",function(){
-		$rootScope.$broadcast("socket.connect",false)
-        conectado=false;
-		$rootScope.socketState=false;
-		try{$rootScope.$apply(function(){})}catch(err){}
-    })
-	return socket;
-	}
-       
-    return {
-		inicializa:function(){
-			return inicializa()
-		},
-         getSocket:function(){
-            return socket
-         },
-         connect:function(){
-            if(!conectado)socket.connect();
-            return true;
-         },
-         isConnected:function(){
-            return socket.connected;
-         },
-		 emit:function(event,obj){
-			 socket.emit(event,obj);
-		 
-		 },
-		 close:function(){
-			
-			 if(socket){
-				socket.removeAllListeners();
-			 	socket.disconnect();
-			 }
-		 }
     };
 })

@@ -64,8 +64,8 @@ input{
     font-size: 2.5vh;
 }
 .spinner svg {
-	stroke: rgba(251, 211, 48, 0.82);
-    fill: #FBE516;
+	stroke: #E7E7E7;
+    fill: #E7E7E7;
 	float: left;
 }
 .has-header{

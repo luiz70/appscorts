@@ -284,3 +284,22 @@ ion-modal-view.modal-fotos>ion-content>div.miniaturas_fotos>button{
 	background-position:center-top !important;
 	background-size:cover !important;
 }
+.perfil-view div.cargando-perfil{
+	position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100vw;
+    height: 90vh;
+}
+.perfil-view div.cargando-perfil ion-spinner{
+	position: absolute;
+    width: 28px;
+    height: 28px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+}

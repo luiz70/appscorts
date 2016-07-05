@@ -3,11 +3,21 @@
     	<div class="buttons">
 			<button class="button button-clear" ng-click="exitModal()">Cancelar</button>
 		</div>
+        <h1 class="title">Enviar Ubicación</h1>
         <div class="buttons r">
-			<button class="button button-clear" ng-click="aceptServicio()" >Aceptar</button>
+			<!--button class="button button-clear"  >Aceptar</button-->
 		</div>
     </ion-header-bar>
     <ion-content class="" has-bouncing="false">
-        
+    <div class="barra-buscadora">
+    	<input class="buscador" placeholder="Busca un lugar" ng-model="buscador.texto" ng-change="buscaTexto()">
+        <i class="icon ion-ios-search-strong"></i>
+    </div>
+       <ion-list can-swipe="false" class="lugares" >
+       <ion-item ng-repeat="lugar in resultados" class="item item-avatar" ng-click="enviarUbicacion(lugar)">
+       <h2>{{lugar.name}}</h2>
+      <p>{{lugar.formatted_address}}</p>
+       </ion-item>
+       </ion-list>
     </ion-content>
 </ion-modal-view>

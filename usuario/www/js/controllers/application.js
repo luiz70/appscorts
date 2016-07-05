@@ -1,43 +1,7 @@
 angular.module('controllers')
-.controller('Aplicacion', function($scope,$rootScope,Memory,Message,$state,$ionicViewSwitcher,$timeout) {
+.controller('Aplicacion', function($scope,$rootScope,Memory,Message,$state,$ionicViewSwitcher,$timeout,Socket) {
 	$rootScope.lock();
-	$rootScope.bitches=[
-	{
-		nombre:"Alice",
-		edad:24,
-		ad:"!Hola, me encantaría que pasáramos un día de diversión juntos!",
-		id:1,
-		about:"Me gusta salir a cenar, ver películas en casa, viajar acompañada y divertirme mucho",
-		estatura:1.65,
-		peso:59,
-		medidas:"86-56-89",
-		nacionalidad:"Mexicana",
-		viajes:true,
-		cenas:true,
-		like:false,
-		rejected:false,
-		mensajes:4,
-		time:"12:34am"
-	},
-	{
-		nombre:"Steff",
-		edad:23,
-		ad:"¿Vamos a cenar?, tengo ganas de salir a pasear contigo",
-		id:2,
-		about:"Me gusta salir a cenar, ver películas en casa, viajar acompañada y divertirme mucho",
-		estatura:1.60,
-		peso:55,
-		medidas:"84-56-87",
-		nacionalidad:"Brasileña",
-		viajes:true,
-		cenas:true,
-		like:false,
-		rejected:false,
-		mensajes:0,
-		time:"1:33pm"
-	}
-	]
-
+	Socket.open();
 	$scope.ajustes=function(){
 		Message.showModal('screens/modal/ajustes.html');
 	}

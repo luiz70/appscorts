@@ -1,12 +1,72 @@
 ﻿angular.module('controllers')
-.controller('Chats', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher) {
+.controller('Chats', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher,Socket) {
 	$scope.openChat=function(user){
 		$ionicViewSwitcher.nextDirection('forward');
 		$state.go("app.chat",{user:user})
 	}
+	$scope.first=false
 	$scope.openPerfil=function(user){
 		$ionicViewSwitcher.nextDirection('forward');
 		$state.go("app.perfil",{user:user,back:"app.chats"});
+	}
+	$scope.chats=[]
+	$scope.chatsCargados=function(data){
+		console.log(data);
+		if(data.Error)console.log(data);
+		else $timeout(function(){$scope.chats=data.Chats},1)
+	}
+	$scope.$on('$ionicView.afterEnter',function(){
+		if(Socket.status){
+		Socket.off("cliente_carga_chats",$scope.chatsCargados)
+		Socket.on("cliente_carga_chats",$scope.chatsCargados)
+		Socket.emit("cliente_carga_chats")
+		}
+	})
+	if(Socket.status){
+		Socket.off("cliente_carga_chats",$scope.chatsCargados)
+		Socket.on("cliente_carga_chats",$scope.chatsCargados)
+		Socket.emit("cliente_carga_chats")
+	}else
+	$rootScope.$on("socket.connect",function(data){
+		if(!$scope.first){
+			$scope.first=true;
+			Socket.off("cliente_carga_chats",$scope.chatsCargados)
+			Socket.on("cliente_carga_chats",$scope.chatsCargados)
+			Socket.emit("cliente_carga_chats")
+		}
+	});
+	$scope.opcionesChat=function(chat){
+		var buttons=[
+			{text:"Eliminar chat",data:chat,funcion:$scope.borraChat},
+			{text:"Ver perfil",data:chat,funcion:$scope.openPerfil},
+			{text:"Abrir chat",data:chat,funcion:$scope.openChat},
+			
+		]
+		Message.showActionSheet(chat.Nombre,buttons,null,"Cancelar",function(index,res){
+			if(res){
+				res.funcion(res.data);
+			}
+		})
+			
+	}
+	$scope.chatEliminado=function(data){
+		Message.hideLoading("");
+		if(data.Error){
+			Message.alert("Eliminar chat","No se ha podido eliminar el chat, intente de nuevo.")
+		}else{
+			$scope.chats=[];
+			Socket.off("cliente_carga_chats",$scope.chatsCargados)
+			Socket.on("cliente_carga_chats",$scope.chatsCargados)
+			Socket.emit("cliente_carga_chats")
+		}
+	}
+	$scope.borraChat=function(perfil){
+		Message.confirm("Eliminar chat: "+perfil.Nombre,"¿Deseas eliminar la conversación con "+perfil.Nombre+"?",function(res){
+			Message.showLoading("Eliminando chat...")
+			Socket.off("cliente_elimina_like",$scope.chatEliminado)
+			Socket.on("cliente_elimina_like",$scope.chatEliminado)
+			Socket.emit("cliente_elimina_like",{IdServidor:perfil.IdServidor})
+		})
 	}
 	$scope.openOptions=function(){
 		var buttons=[
@@ -19,15 +79,63 @@
 		})
 	}
 })
-.controller('Chat', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher) {
+.controller('Chat', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher,Socket,$ionicScrollDelegate) {
+	$scope.cargandoMensajes=true;
 	$scope.chatUser=$state.params.user;
+	if(!$scope.chatUser){
+		$ionicViewSwitcher.nextDirection('back');
+		$state.go("app.chats")
+	}
+	
+	$scope.$on('$ionicView.afterEnter',function(){
+		if(Socket.status){
+		Socket.off("cliente_carga_chat",$scope.chatCargado)
+		Socket.on("cliente_carga_chat",$scope.chatCargado)
+		Socket.emit("cliente_carga_chat",{IdServidor:$scope.chatUser.IdServidor})
+		}
+	})
+	$scope.error=false;
+	$scope.mensajes=[];
+	$scope.chatCargado=function(data){
+		$timeout(function(){
+		
+		if(data.Error){
+			$scope.cargandoMensajes=false;
+			$scope.error=true;
+		}else{
+			$scope.mensajes=data.Mensajes
+			$timeout(function(){
+			$ionicScrollDelegate.scrollBottom();
+			$scope.cargandoMensajes=false;
+			},100)
+			console.log($scope.mensajes);
+		}
+		},1);
+	}
 	$scope.messages=[];
 	$scope.inputChat="";
+	$scope.abreUbicacion=function(mensaje){
+		console.log(mensaje.Ubicacion)
+		if(mensaje.Ubicacion){
+		}
+	}
+	$rootScope.enviarUbicacion=function(lugar){
+		$scope.exitModal()
+		var dt=new Date()
+			var h=dt.getHours()<10?"0"+dt.getHours():dt.getHours();
+			var m=dt.getMinutes()<10?"0"+dt.getMinutes():dt.getMinutes();
+			var p="am"
+			if(h>12){
+				p="pm"
+				h-=12;
+			}
+		$scope.mensajes.push({Mensaje:"Ubicación",Direccion:1,Fecha:h+":"+m+p,Ubicacion:{latitude:lugar.geometry.location.lat(),longitude:lugar.geometry.location.lng()}})
+	}
 	$scope.closeChat=function(){
 		$ionicViewSwitcher.nextDirection('back');
 		$state.go("app.chats")
 	}
-	$scope.messages.push({text:"Hola, ¿cómo estás?",user:1,time:"12:35"})
+	//$scope.messages.push({text:"Hola, ¿cómo estás?",user:1,time:"12:35"})
 	
 	/*$timeout(function(){
 		$scope.messages.push({})
@@ -35,7 +143,16 @@
 	$scope.sendMsg=function(){
 		$scope.inputChat=$scope.inputChat.trim();
 		if($scope.inputChat && $scope.inputChat!=""){
-			$scope.messages.push({text:$scope.inputChat,user:2,time:"12:36"})
+			var dt=new Date()
+			var h=dt.getHours()<10?"0"+dt.getHours():dt.getHours();
+			var m=dt.getMinutes()<10?"0"+dt.getMinutes():dt.getMinutes();
+			var p="am"
+			if(h>12){
+				p="pm"
+				h-=12;
+			}
+			$scope.mensajes.push({Mensaje:$scope.inputChat,Direccion:1,Fecha:h+":"+m+p})
+			Socket.emit("cliente_mensaje_chat",{Mensaje:$scope.inputChat,IdServidor:$scope.chatUser.IdServidor})
 			$scope.inputChat="";
 		}
 	}
@@ -51,6 +168,7 @@
 			}
 		})
 	}
+	//Message.showModal("screens/modal/ubicacion.html",null,$scope);
 	$scope.sendUbicacion=function(){
 		Message.showModal("screens/modal/ubicacion.html",null,$scope);
 	}
@@ -134,5 +252,56 @@
 	
 })
 .controller('Ubicacion', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher) {
+	$scope.buscador={
+		texto:""
+	};
+	$scope.resultados=[];
+	$scope.timeout=null;
+	$scope.buscaTexto=function(){
+		if($scope.timeout)$timeout.cancel($scope.timeout)
+		$scope.timeout=$timeout($scope.busca,1000);
+	}
+	$scope.limpiaBuscador=function(){
+		$scope.resultados=[];
+		$scope.buscador.texto=""
+	}
+	
+	
+	$scope.busca=function(){
+		var map = new google.maps.Map(document.getElementById('map'), {
+      center: new google.maps.LatLng(20.666871, -103.352925),
+      zoom: 15
+    });
+		$scope.resultados=[]
+		if($scope.buscador.texto){
+		if($scope.buscador.texto.trim()!=""){
+			$scope.searchBox = new google.maps.places.PlacesService(map);
+			var service = new google.maps.places.AutocompleteService();
+ 			service.getPlacePredictions({ input: $scope.buscador.texto ,language:"es"}, $scope.predicciones);
+		}else $scope.resultados=[]
+		}else $scope.resultados=[]//$scope.buscando=false
+	}
+	$scope.predicciones = function(predictions, status) {
+		$scope.resultados=[]
+		if(!predictions)
+		$scope.$apply(function () {
+			//$scope.buscando=false
+		})
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+        predictions.forEach(function(prediction) {
+		$scope.searchBox.getDetails({placeId:prediction.place_id}, $scope.placeDetails);	
+    	});
+	}
+  };
+
+  $scope.placeDetails=function(result,status){
+	 $scope.buscando=false;
+	  if (status == google.maps.places.PlacesServiceStatus.OK) {
+	  $scope.$apply(function () {
+		  console.log(result);
+          	$scope.resultados.push(result);
+        });
+	  }
+  }
 	
 })

@@ -3,20 +3,21 @@
 		<div class="buttons">
 			<button class="button button-icon button-clear ion-ios-arrow-left" ng-click="goBack()"></button>
 		</div>
-		<h1 class="title perfil">{{perfilUsuario.nombre}}</h1>
-		<div class="edad-header" >{{perfilUsuario.edad}} años</div>
+		<h1 class="title perfil" >{{perfilUsuario.Nombre}}</h1>
+		<div class="edad-header" >{{perfilUsuario.Edad}} años</div>
 	</ion-header-bar>
 	<ion-content class="main-content" has-bouncing="false" scroll="true">
-  		<div class="home-card">
+    	<div class="cargando-perfil ng-hide" ng-show="!perfilUsuario.Informacion"><ion-spinner icon="android"></ion-spinner></div>
+  		<div class="home-card ng-hide" ng-show="perfilUsuario.Informacion">
         	<div class="profile">
-            	<div class="foto" style="background: url(img/profiles/prof{{perfilUsuario.id}}.jpg)" ng-click="openimg(0)"></div>
+            	<div class="foto" style="background: url({{config.http.getUrl()+'servidor/foto/'+perfilUsuario.IdServidor+'/0'}})" ng-click="openimg(0)"></div>
                 <div class="miniaturas" >
-                	<div ng-repeat="i in [1,2,3,4,5]" style="background: url(img/mini/{{perfilUsuario.id}}_{{i}}.jpg)" ng-click="openimg(i)"></div>
+                	<div ng-repeat="i in perfilUsuario.Informacion.Fotos" ng-if="$index>0" style="background: url({{config.http.getUrl()+'servidor/foto/'+perfilUsuario.IdServidor+'/'+i}})" ng-click="openimg(i)"></div>
                 </div>
                 <!--button class="solicitar" ng-click="solicitar()">Solicitar</button-->
                 <button class="precios" ng-click="precios()">Precios</button>
-                <button class="like" ng-click="like()" ng-hide="added"><i class="icon ion-ios-heart"></i></button>
-                <button class="like" ng-click="chat()" ng-hide="!added"><i class="icon ion-chatbubble-working" ng-class="{'chat':added}"></i></button>
+                <button class="like" ng-click="like()" ng-hide="perfilUsuario.Informacion.Chat"><i class="icon ion-ios-heart"></i></button>
+                <button class="like" ng-click="chat()" ng-hide="!perfilUsuario.Informacion.Chat"><i class="icon ion-chatbubble-working" ng-class="{'chat':perfilUsuario.Informacion.Chat}"></i></button>
             </div>
             <div class="info " >
             	<div class="aboutme">
@@ -30,33 +31,33 @@
                         <div>4</div>
                     </div>
                     <div class="content">
-                    {{perfilUsuario.about}}
+                    {{perfilUsuario.Informacion.Informacion}}
                     </div>
                     <div class="description">
                     	<div class="element">
                     		<button class="title">Estatura:</button>
-                            <button class="datos">{{perfilUsuario.estatura}}m</button>
+                            <button class="datos">{{perfilUsuario.Informacion.Estatura | estatura}}</button>
                         </div>
                         <div class="element">
                     		<button class="title">Peso:</button>
-                            <button class="datos">{{perfilUsuario.peso}}k</button>
+                            <button class="datos">{{perfilUsuario.Informacion.Peso | peso}}</button>
                         </div>
                         <div class="element">
                     		<button class="title">Medidas:</button>
-                            <button class="datos">{{perfilUsuario.medidas}}</button>
+                            <button class="datos">{{perfilUsuario.Informacion.Medidas}}</button>
                         </div>
                         <div class="element">
                     		<button class="title">Nacionalidad:</button>
-                            <button class="datos">{{perfilUsuario.nacionalidad}}</button>
+                            <button class="datos">{{perfilUsuario.Informacion.Nacionalidad}}</button>
                         </div>
                         <div class="element">
                     		<button class="title">Disponibilidad de viaje:</button>
-                            <button class="datos">{{perfilUsuario.viajes?'sí':'no'}}</button>
+                            <button class="datos">{{perfilUsuario.Informacion.Viajes?'sí':'no'}}</button>
                         </div>
-                        <div class="element">
+                        <!--div class="element">
                     		<button class="title">Cenas:</button>
                             <button class="datos">{{perfilUsuario.cenas?'sí':'no'}}</button>
-                        </div>
+                        </div-->
                     </div>
                 </div>
             </div>

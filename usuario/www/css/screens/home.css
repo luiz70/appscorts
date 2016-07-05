@@ -85,6 +85,7 @@ td-cards{
 	float:left;
 	height:70vh;
 	z-index: 2;
+	    background: #535353;
 }
 .home-view .profile .foto{
 	position: absolute;

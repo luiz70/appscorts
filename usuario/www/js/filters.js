@@ -39,3 +39,18 @@ angular.module('starter')
 	   }
 	}
 })
+.filter('peso', function () {
+	return function (input) {
+	   if(input){
+		   return input+"k"
+	   }
+	}
+})
+.filter('estatura', function () {
+	return function (input) {
+	   if(input){
+		   var i=input/100;
+		   return i+"m"
+	   }
+	}
+})

@@ -5,25 +5,26 @@
 		</div>
 		<h1 class="title perfil">Chats</h1>
 		<div class="buttons right">
-			<button class="button button-icon button-clear ion-android-more-vertical" ng-click="openOptions()" ></button>
+			<!--button class="button button-icon button-clear ion-android-more-vertical" ng-click="openOptions()" ></button-->
 		</div>
 	</ion-header-bar>
 	<ion-content class="main-content" has-bouncing="true" scroll="true">
   		<ion-list can-swipe="false">
-            <ion-item  class="item-avatar item-chat" ng-repeat="bitch in bitches" >
-                <div class="img" style="background: url(img/profiles/prof{{bitch.id}}.jpg);" ng-click="openPerfil(bitch)"></div>
-                <div class="hora">{{bitch.time}}<i class="icon ion-ios-arrow-right"></i></div>
-                <h2>{{bitch.nombre}}</h2>
-      			<p>{{bitch.mensajes>0?bitch.mensajes+' mensajes sin leer':'No hay mensajes pendientes'}}</p>
+            <ion-item  class="item-avatar item-chat" ng-repeat="bitch in chats" >
+                <div class="img" style="background: url({{config.http.getUrl()+'servidor/foto/'+bitch.IdServidor+'/0'}});" ng-click="openPerfil(bitch)"></div>
+                <div class="hora">{{bitch.Hora.toLowerCase()}}<i class="icon ion-ios-arrow-right"></i></div>
+                <h2>{{bitch.Nombre}}</h2>
+      			<p>{{bitch.Mensajes}}</p>
                 <div class="cover" ng-click="openChat(bitch);"></div>
+                <div class="delete" ng-click="opcionesChat(bitch);"><i class="icon ion-ios-gear"></i></div>
             </ion-item>
-            <ion-item  class="item-avatar item-chat" >
+            <!--ion-item  class="item-avatar item-chat" >
                 <div class="img" style="background: url(img/profiles/prof3.jpg);"></div>
-                <!--div class="hora">{{bitch.time}}<i class="icon ion-ios-arrow-right"></i></div-->
+                
                 <h2>sandra</h2>
       			<p>No disponible</p>
                 <div class="cover offline"></div>
-            </ion-item>
+            </ion-item-->
         </ion-list>
 	</ion-content>
 </ion-view>

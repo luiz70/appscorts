@@ -3,18 +3,20 @@
 		<div class="buttons">
 			<button class="button button-icon button-clear ion-ios-arrow-left" ng-click="closeChat()"></button>
 		</div>
-		<h1 class="title perfil">{{chatUser.nombre}}</h1>
+		<h1 class="title perfil">{{chatUser.Nombre}}</h1>
 		<div class="buttons right">
 			<button class="button button-icon button-clear ion-android-more-vertical" ng-click="showOptions()" ></button>
 		</div>
 	</ion-header-bar>
     <div class="solicitar" ng-click="solicitar()">Solicitar servicio</div>
-    <div class="info-msj">Los mensajes se borraran después de leerlos.</div>
+    <!--div class="info-msj">Los mensajes se borraran después de leerlos.</div-->
+    <div id="map"></div>
 	<ion-content class="main-content" has-bouncing="true" scroll="true">
-  		<ion-list can-swipe="false">
-            <ion-item  class="item-avatar item-chat item-conver " ng-repeat="message in messages" ng-class="{'cliente':message.user==2}" >
-                <div class="img" style="background: url(img/profiles/prof{{chatUser.id}}.jpg);"  ng-click="verperfil()"></div>
-                <div class="h2"><div class="texto">{{message.text}}</div><div class="hora">{{message.time}}</div></div>
+    	<div class="cargando-chat ng-hide" ng-hide="!cargandoMensajes"><ion-spinner icon="android"></ion-spinner></div>
+  		<ion-list can-swipe="false" class="ng-hide" ng-hide="cargandoMensajes" delegate-handle="chat">
+            <ion-item  class="item-avatar item-chat item-conver " ng-repeat="mensaje in mensajes track by $index" ng-class="{'cliente':mensaje.Direccion==1}" ng-click="abreUbicacion(mensaje)">
+                <div class="img" style="background: url({{config.http.getUrl()+'servidor/foto/'+chatUser.IdServidor+'/0'}});"  ng-click="verperfil()"></div>
+                <div class="h2"><div class="texto">{{mensaje.Mensaje}}</div><div class="hora">{{mensaje.Fecha.toLowerCase()}}</div></div>
             </ion-item>
             
         </ion-list>
