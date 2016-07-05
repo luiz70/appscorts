@@ -1,6 +1,8 @@
 ﻿angular.module('controllers')
 .controller('Perfil', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher) {
 	$scope.perfilUsuario=$state.params.user;
+	$rootScope.fotoSeleccionada=1;
+	$rootScope.perfilUsuario=$state.params.user;
 	$scope.back=$state.params.back;
 	$scope.added=false;
 	$scope.showImage=false;
@@ -16,8 +18,10 @@
 		$state.go("app.chat",{user:$scope.perfilUsuario});
 	}
 	$scope.openimg=function(id){
-		$scope.showImage=true;
-		$scope.imgShowImage=id;
+		//$scope.showImage=true;
+		//$scope.imgShowImage=id;
+		$rootScope.fotoSeleccionada=id;
+		Message.showModal("screens/modal/fotos.html","none")
 	}
 	$scope.closeImg=function(){
 		$scope.showImage=false;
@@ -26,5 +30,22 @@
 		$ionicViewSwitcher.nextDirection('back');
 		if($scope.back==null)$state.go("app.home");
 		else $state.go($scope.back,{user:$scope.perfilUsuario});
+	}
+})
+.controller('Fotos', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher,$ionicSlideBoxDelegate) {
+	$scope.cierraFotos=function(){
+		Message.hideModal();
+	}
+	
+	$rootScope.$watch("fotoSeleccionada",function(newv){
+		if($rootScope.fotoSeleccionada!=null){
+			$ionicSlideBoxDelegate.update();
+			console.log($rootScope.fotoSeleccionada);
+			$ionicSlideBoxDelegate.slide($rootScope.fotoSeleccionada);
+			
+		}
+	})
+	$scope.switchImg=function(foto){
+		$rootScope.fotoSeleccionada=foto;
 	}
 })

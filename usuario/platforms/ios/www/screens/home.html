@@ -9,8 +9,8 @@
 		</div>
 	</ion-header-bar>
 	<ion-content class="main-content" has-bouncing="false" scroll="false" >
-    	<!--div class="reload-elements" ng-show="available.length==0" ng-click="refreshBitches()"> <i class="icon ion-android-refresh"></i></div>
-  		<div class="home-card" ng-repeat="bitch in available" id="card{{bitch.id}}">
+    	<div class="reload-elements" ng-show="allbitches.length==0" ng-click="reloadCards()"> <i class="icon ion-android-refresh"></i></div>
+  		<!--div class="home-card" ng-repeat="bitch in available" id="card{{bitch.id}}">
         	<div class="profile">
             	<div class="foto" ng-click="" style="background: url(img/profiles/prof{{bitch.id}}.jpg)" ></div>
                 <div class="like left" ng-click="dislikeb(bitch)"> <i class="icon ion-close"></i></div>
@@ -28,7 +28,7 @@
             </div>
         </div-->
         <td-cards delegate-handle="cards" >
-          <td-card ng-repeat="bitch in cards.active" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" min-threshold="0.2">
+          <td-card ng-repeat="bitch in allbitches" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" min-threshold="0.2">
             <!--div class="discard" ng-click="onClickTransitionOut(card)">DISCARD</div-->
             <div class="profile">
             	<div class="foto" ng-click="perfil(bitch)" style="background: url(img/profiles/prof{{bitch.id}}.jpg)" ></div>
@@ -45,12 +45,10 @@
                 </div>
             </div>
           </td-card>
-          <td-card id="end-card" drag="false">
-            <i class="icon ion-ios-refresh" ng-click="refreshCards()"></i>
-          </td-card>
+          
         </td-cards>
         <div class="info" ng-click="">
-            	<div>{{cards.active[0].ad}}</div>
+            	<div>{{(allbitches.length)?allbitches[0].ad:""}}</div>
             </div>
 	</ion-content>
 </ion-view>

@@ -44,6 +44,7 @@ td-cards{
     bottom: 0px;
     left: 0px;
     right: 0px;
+	z-index:10000;
 }
 .home-view .reload-elements>i{
 	font-size: 6vh;
