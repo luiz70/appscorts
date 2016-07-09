@@ -9,6 +9,14 @@
     margin-top: 0.2vh;
 	text-align:center !important;
 }
+.modal-ajustes ion-header-bar .buttons.r{
+    right: 0px;
+    left: auto;
+    position: absolute;
+}
+.modal-ajustes ion-header-bar .buttons.r button::before{
+	margin:0px;
+}
 .modal-ajustes .encabezado-ajustes{
 	top: 10vh;
     height: 15vh;
@@ -64,7 +72,10 @@
 }
 .modal-ajustes ion-content{
     background:none !important;
-    top: 25vh;
+    
+}
+.modal-ajustes ion-content.original{
+	top: 25vh;
 }
 .modal-ajustes ion-content ion-list .list{
 	padding:2vh;
@@ -182,3 +193,111 @@
     font-weight: 400;
     color: #D5D5D5;
 }
+.modal-backdrop-bg{
+	background: #000;
+    opacity: 0.8;
+}
+ion-modal-view.modal-informacion{
+	width: 90vw;
+    height: 37vh !important;
+    min-height: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin: auto;
+    right: 0px;
+    bottom: 0px;
+	
+}
+ion-modal-view.modal-informacion ion-content{
+    background: #d6d6d6 !important;
+}
+.modal-ajustes ion-content:not(.original){
+	padding:2vh;
+	text-align:justify;
+}
+ion-modal-view.modal-informacion ion-content{
+	padding:2vh;
+}
+ion-modal-view.modal-informacion ion-content .logo{
+	width:100%;
+	height:5vh;
+	background:url(../../../img/appscorts-black.png);
+	background-size:contain;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+ion-modal-view.modal-informacion ion-content .texto{
+	font-size: 2vh;
+    text-align: justify;
+    margin-top: 2vh;
+    padding: 0vh 2vh;
+}
+ion-modal-view.modal-informacion ion-content .version{
+    text-align: center;
+    font-size: 3vh;
+    margin-top: 3vh;
+}
+.modal-ajustes.pago ion-content .sin-tarjeta{
+	font-size: 2.5vh;
+    text-align: justify;
+    line-height: 3.2vh;
+}
+.modal-ajustes ion-content .linea{
+	    width: 100%;
+    padding: 1vh;
+    /*border-top: solid 1px #aeaeae;*/
+    border-bottom: solid 1px #aeaeae;
+	    position: relative;
+    float: left;
+}
+.modal-ajustes ion-content .linea .titulo{
+	position: relative;
+    float: left;
+    width: 100%;
+    font-size: 3vh;
+    height: 3vh;
+    font-weight: 300;
+    color: #181818;
+}
+.modal-ajustes ion-content .linea .valor{
+	    position: relative;
+    float: left;
+    width: 100%;
+    font-size: 2.6vh;
+    color: #232323;
+    font-weight: 200;
+	margin-top:0.5vh;
+}
+.modal-ajustes ion-content .foto{
+	position:relative;
+	width:100%;
+	float:left;
+	height:10vh;
+	text-align:center;
+	
+}
+.modal-ajustes ion-content .foto>div{
+    position: relative;
+    display: inline-block;
+    height: 10vh;
+    width: 10vh;
+    background-image: url(../../../img/profiles/profmr.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    border: solid 0.5vh #909090;
+
+}
+.modal-ajustes ion-content .boton-ajustes{
+	    position: relative;
+    float: left;
+    width: 100%;
+    margin-top: 1vh;
+    background: #181818;
+    color: #e3e3e3;
+    font-size: 3vh;
+    padding: 1vh;
+}
+    

@@ -112,6 +112,56 @@ angular.module('starter', ['ionic', 'controllers','ionic-material', 'ngCordova',
 			back:null,
    		},
     })
+	.state('app.menu', {
+        url: '/menu',
+		cache:false,
+        views: {
+            'contenido-home': {
+                templateUrl: 'screens/menu.html',
+                controller: 'Menu'
+            }
+        },
+    })
+	.state('app.cuenta', {
+        url: '/cuenta',
+		cache:false,
+        views: {
+            'contenido-home': {
+                templateUrl: 'screens/cuenta.html',
+                controller: 'Cuenta'
+            }
+        },
+    })
+	.state('app.pago', {
+        url: '/pago',
+		cache:false,
+        views: {
+            'contenido-home': {
+                templateUrl: 'screens/pago.html',
+                controller: 'Pago'
+            }
+        },
+    })
+	.state('app.preferencias', {
+        url: '/preferencias',
+		cache:false,
+        views: {
+            'contenido-home': {
+                templateUrl: 'screens/preferencias.html',
+                controller: 'Preferencias'
+            }
+        },
+    })
+	.state('app.terminos', {
+        url: '/terminos',
+		cache:false,
+        views: {
+            'contenido-home': {
+                templateUrl: 'screens/terminos.html',
+                controller: 'Terminos'
+            }
+        },
+    })
 	.state('app.chats', {
         url: '/chats',
         views: {

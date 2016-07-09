@@ -1,10 +1,32 @@
 ﻿angular.module('controllers')
-.controller('Menu', function($scope,$rootScope,Message,$state,Memory,$timeout) {
+.controller('Menu', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher) {
 	$scope.cierraAjustes=function(){
-		Message.hideModal();
+		$ionicViewSwitcher.nextDirection('forward');
 		$state.go("app.home")
 	}
+	$scope.abreCuenta=function(){
+		$ionicViewSwitcher.nextDirection('forward');
+		$state.go("app.cuenta")
+	}
+	$scope.abrePago=function(){
+		$ionicViewSwitcher.nextDirection('forward');
+		$state.go("app.pago")
+	}
+	$scope.abrePreferencias=function(){
+		$ionicViewSwitcher.nextDirection('forward');
+		$state.go("app.preferencias")
+	}
+	
+	$scope.abreTerminos=function(){
+		$ionicViewSwitcher.nextDirection('forward');
+		$state.go("app.terminos")
+	}
+//Message.showModal("/screens/modal/informacion.html");
+	$scope.abreInformacion=function(){
+		Message.showModal("/screens/modal/informacion.html");
+	}
 	$scope.logout=function(){
+		Message.confirm("Cerrar sesión","¿Desea cerrar la sesión?",function(){
 		Message.hideModal();
 		Message.showLoading("Cerrando sesión");
 		$timeout(function(){
@@ -13,6 +35,20 @@
 			$state.go("login")
 			Message.hideLoading();
 		},1000)
+		})
+	}
+})
+.controller('Pago', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher) {
+})
+.controller('Cuenta', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher) {
+})
+.controller('Preferencias', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher) {
+})
+.controller('Terminos', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher) {
+})
+.controller('Informacion', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher) {
+	$scope.cierraInformacion=function(){
+		Message.hideModal();
 	}
 })
 .controller('Lock', function($scope,$rootScope,Message,$state,Memory,$timeout) {

@@ -15,21 +15,21 @@
                 	<div ng-repeat="i in perfilUsuario.Informacion.Fotos" ng-if="$index>0" style="background: url({{config.http.getUrl()+'servidor/foto/'+perfilUsuario.IdServidor+'/'+i}})" ng-click="openimg(i)"></div>
                 </div>
                 <!--button class="solicitar" ng-click="solicitar()">Solicitar</button-->
-                <button class="precios" ng-click="precios()">Precios</button>
+                <button class="precios" ng-click="precios()">Tarifas</button>
                 <button class="like" ng-click="like()" ng-hide="perfilUsuario.Informacion.Chat"><i class="icon ion-ios-heart"></i></button>
                 <button class="like" ng-click="chat()" ng-hide="!perfilUsuario.Informacion.Chat"><i class="icon ion-chatbubble-working" ng-class="{'chat':perfilUsuario.Informacion.Chat}"></i></button>
             </div>
             <div class="info " >
             	<div class="aboutme">
                 	<div class="title">Sobre mí</div>
-                    <div class="icons">
+                    <!--div class="icons">
                     	<i class="glyph-icon flaticon-fashion" ></i>
                         <div>3</div>
                     	<i class="glyph-icon flaticon-shapes" style="color: #EA4095;"></i>
                         <div>5</div>
                     	<i class="glyph-icon flaticon-nature" style="color: #40A2EA;;"></i>
                         <div>4</div>
-                    </div>
+                    </div-->
                     <div class="content">
                     {{perfilUsuario.Informacion.Informacion}}
                     </div>
@@ -47,8 +47,16 @@
                             <button class="datos">{{perfilUsuario.Informacion.Medidas}}</button>
                         </div>
                         <div class="element">
+                    		<button class="title">Color de ojos:</button>
+                            <button class="datos">{{"Café"}}</button>
+                        </div>
+                        <div class="element">
                     		<button class="title">Nacionalidad:</button>
                             <button class="datos">{{perfilUsuario.Informacion.Nacionalidad}}</button>
+                        </div>
+                        <div class="element">
+                    		<button class="title">Idiomas:</button>
+                            <button class="datos">{{"Ingles y español"}}</button>
                         </div>
                         <div class="element">
                     		<button class="title">Disponibilidad de viaje:</button>

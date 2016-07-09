@@ -14,6 +14,9 @@
         <i class="icon ion-ios-search-strong"></i>
     </div>
        <ion-list can-swipe="false" class="lugares" >
+       <ion-item  class="item item-avatar" ng-click="enviarUbicacion()">
+       <h2>Mi ubicación actual</h2>
+       </ion-item>
        <ion-item ng-repeat="lugar in resultados" class="item item-avatar" ng-click="enviarUbicacion(lugar)">
        <h2>{{lugar.name}}</h2>
       <p>{{lugar.formatted_address}}</p>

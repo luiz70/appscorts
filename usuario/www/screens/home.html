@@ -1,11 +1,13 @@
 <ion-view view-title="Home" class="home-view" can-swipe-back="false" >
 	<ion-header-bar align-title="left" class="bar-main-header">
-		<div class="buttons">
+		<div class="buttons l">
 			<button class="button button-icon button-clear ion-navicon" ng-click="ajustes()"></button>
 		</div>
 		<div class="header-logo"></div>
-		<div class="buttons right">
-			<button class="button button-icon button-clear ion-chatbubble-working" ng-click="chats()"></button>
+		<div class="buttons right" ng-click="chats()">
+        	<i class="icon ion-android-favorite"></i>
+        	<button class="button button-clear favoritas" >Favoritas</button>
+			<!--button class="button button-icon button-clear ion-chatbubble-working" ng-click="chats()"></button-->
 		</div>
 	</ion-header-bar>
 	<ion-content class="main-content" has-bouncing="false" scroll="false" ng-controller="CardsCtrl">
@@ -28,6 +30,8 @@
             </div-->
             <div class="profile">
             	<div class="foto" ng-click="perfil(bitch)" style="background: url({{config.http.getUrl()+'servidor/foto/'+bitch.IdServidor+'/0'}})" ></div>
+                <div class="no-text"><i class="icon ion-close"></i>Pasar</div>
+              <div class="yes-text"><i class="icon ion-android-favorite"></i>Favorita</div>
                 <div class="crop-likes" style="display:none">
                 <div class="like left" ng-click="onClickTransitionOut(bitch)"> <i class="icon ion-close"></i></div>
                 <div class="like" ng-click="onClickTransitionRight($event,bitch)" ><i class="icon ion-android-favorite"></i></div>

@@ -1,0 +1,29 @@
+<ion-view view-title="Cuenta" class="modal-ajustes pago" can-swipe-back="false">
+    <ion-header-bar  class="header-bar-menu">
+    	<div class="buttons">
+			<button class="button button-icon button-clear ion-android-close" ng-click="regresarAjustes()"></button>
+		</div>
+        <h1 class="title">Mi cuenta</h1>
+        <!--div class="buttons">
+			<button class="button button-icon button-clear ion-android-more-vertical" ng-click="masOpciones()"></button>
+		</div-->
+    </ion-header-bar>
+    
+    <ion-content class="" has-bouncing="false">
+    <div class="foto"><div></div></div>
+    <div class="linea">
+        <div class="titulo">Alias</div>
+        <div class="valor">{{"Usuario3432"}}</div>
+        </div>
+        <div class="linea">
+        <div class="titulo">Correo</div>
+        <div class="valor">{{Usuario.Correo}}</div>
+        </div>
+        <div class="linea">
+        <div class="titulo">Tipo de socio</div>
+        <div class="valor">{{"Oro"}}</div>
+        </div>
+        <button class="boton-ajustes">Editar cuenta</button>
+        <button class="boton-ajustes">Cambiar contraseña</button>
+    </ion-content>
+</ion-view>

@@ -173,15 +173,15 @@ ion-header-bar>.buttons>button:before{
 	border: solid 2px #D4F100;
 }
 .bar-main-header .header-logo{
-	background: url(../img/appscorts.png);
+    background: url(../img/appscorts.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
     top: 1.5vh;
     bottom: 1.5vh;
-    left: 10vh;
-    right: 10vh;
+    left: 8vh;
+    right: 14vh;
 }
 ion-header-bar > .title{
 	    font-size: 3vh !important;

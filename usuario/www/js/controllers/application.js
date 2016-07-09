@@ -3,7 +3,13 @@ angular.module('controllers')
 	$rootScope.lock();
 	Socket.open();
 	$scope.ajustes=function(){
-		Message.showModal('screens/modal/ajustes.html');
+		//Message.showModal('screens/modal/ajustes.html');
+		$ionicViewSwitcher.nextDirection('back');
+		$state.go("app.menu");
+	}
+	$scope.regresarAjustes=function(){
+		$ionicViewSwitcher.nextDirection('back');
+		$state.go("app.menu")
 	}
 	$scope.chats=function(){
 		$ionicViewSwitcher.nextDirection('forward');

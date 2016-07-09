@@ -1,0 +1,17 @@
+<ion-view view-title="Cuenta" class="modal-ajustes pago" can-swipe-back="false">
+    <ion-header-bar  class="header-bar-menu">
+    	<div class="buttons">
+			<button class="button button-icon button-clear ion-android-close" ng-click="regresarAjustes()"></button>
+		</div>
+        <h1 class="title">Métodos de Pago</h1>
+        <div class="buttons">
+			<button class="button button-icon button-clear ion-android-add" ng-click="nuevoMetodo()"></button>
+		</div>
+    </ion-header-bar>
+    
+    <ion-content class="" has-bouncing="false">
+    	<div class="sin-tarjeta">Aún no has registrado ningun metodo de pago, da click en <i class="icon ion-android-add-circle"></i> para capturar una tarjeta.</div>
+        <ion-list can-swipe="false">            
+        </ion-list>
+    </ion-content>
+</ion-view>

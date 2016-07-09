@@ -121,6 +121,7 @@
 	}
 	$rootScope.enviarUbicacion=function(lugar){
 		$scope.exitModal()
+		
 		var dt=new Date()
 			var h=dt.getHours()<10?"0"+dt.getHours():dt.getHours();
 			var m=dt.getMinutes()<10?"0"+dt.getMinutes():dt.getMinutes();
@@ -129,7 +130,10 @@
 				p="pm"
 				h-=12;
 			}
+			if(lugar)
 		$scope.mensajes.push({Mensaje:"Ubicación",Direccion:1,Fecha:h+":"+m+p,Ubicacion:{latitude:lugar.geometry.location.lat(),longitude:lugar.geometry.location.lng()}})
+		else
+		$scope.mensajes.push({Mensaje:"Ubicación",Direccion:1,Fecha:h+":"+m+p})
 	}
 	$scope.closeChat=function(){
 		$ionicViewSwitcher.nextDirection('back');
@@ -156,9 +160,12 @@
 			$scope.inputChat="";
 		}
 	}
+	$scope.agregarFavorita=function(data){
+	}
 	$scope.showOptions=function(){
 		var buttons=[
-			{text:"Enviar ubicacion",funcion:$scope.sendUbicacion},
+			{text:"Invitar favorita",funcion:$scope.agregarFavorita},
+			{text:"Enviar ubicación",funcion:$scope.sendUbicacion},
 			{text:"Solicitar servicio",funcion:$scope.solicitar},
 			{text:"Ver perfil",funcion:$scope.verperfil}
 		]
