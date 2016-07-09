@@ -1,6 +1,6 @@
 ﻿angular.module('controllers')
 .controller('Chat',
-  function($scope, $rootScope, $state, $stateParams, MockService,$ionicActionSheet, $ionicPopup, $ionicScrollDelegate, $timeout, $interval,$ionicViewSwitcher,Socket) {
+  function($scope, $rootScope, $state, $stateParams, MockService,$ionicActionSheet, $ionicPopup, $ionicScrollDelegate, $timeout, $interval,$ionicViewSwitcher,Socket,Message) {
 	$scope.cargandoMensajes=true;
 	$scope.chatUser=$state.params.user;
 	if(!$scope.chatUser){
