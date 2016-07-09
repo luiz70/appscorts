@@ -98,16 +98,16 @@
     color: #F1F1F1 !important;
 }
 .chat-view .solicitar{
-    position: absolute;
+	position: absolute;
     left: 0px;
     top: 10vh;
     right: 0px;
     height: 8vh;
-    background: #F7D02D;
+    background: #be2251;
     line-height: 8vh;
     text-align: center;
     font-size: 4vh;
-    color: #171717;
+    color: #eaeaea;
     font-weight: 400;
 }
 .chat-view .info-msj{
@@ -187,7 +187,7 @@
 .chat-view ion-list .item-chat.item-conver.cliente div.h2>div.hora{
 	color:#D6D6D6;
 }
-.chat-view .chat-footer{
+/*.chat-view .chat-footer{
     position: absolute;
     bottom: 0px;
     height: 8vh;
@@ -239,7 +239,7 @@
     margin: auto;
     width: 2vh;
     height: 4.5vh;
-}
+}*/
 .chat-view .cargando-chat{
 	    position: absolute;
     top: 0px;

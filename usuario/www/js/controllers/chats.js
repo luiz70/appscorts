@@ -79,7 +79,8 @@
 		})
 	}
 })
-.controller('Chat', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher,Socket,$ionicScrollDelegate) {
+
+.controller('Chat2', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher,Socket,$ionicScrollDelegate) {
 	$scope.cargandoMensajes=true;
 	$scope.chatUser=$state.params.user;
 	if(!$scope.chatUser){
