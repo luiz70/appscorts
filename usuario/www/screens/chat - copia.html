@@ -8,7 +8,8 @@
 			<button class="button button-icon button-clear ion-android-more-vertical" ng-click="showOptions()" ></button>
 		</div>
 	</ion-header-bar>
-    <!--div class="solicitar" ng-click="solicitar()">Solicitar servicio</div>
+    <div class="solicitar" ng-click="solicitar()">Solicitar servicio</div>
+    <!--div class="info-msj">Los mensajes se borraran después de leerlos.</div-->
     <div id="map"></div>
 	<ion-content class="main-content" has-bouncing="true" scroll="true">
     	<div class="cargando-chat ng-hide" ng-hide="!cargandoMensajes"><ion-spinner icon="android"></ion-spinner></div>
@@ -23,5 +24,5 @@
     <div class="chat-footer">
     	<textarea placeholder="Escribir mensaje" rows="1" ng-model="inputChat"></textarea>
         <button ng-click="sendMsg()"><i class="icon ion-android-send"></i></button>
-    </div-->
+    </div>
 </ion-view>
