@@ -11,11 +11,11 @@ angular.module('controllers')
 	}
 		
 	})
+            
 	$scope.$on('$ionicView.afterEnter',function(){
 			$timeout(function() {
-                     if(navigator.splashscreen)navigator.splashscreen.hide();
 				angular.element(document.getElementById("app_content")).removeClass("invisible")
-                
+                if(navigator.splashscreen)navigator.splashscreen.hide();
             }, 500);
 			
 			

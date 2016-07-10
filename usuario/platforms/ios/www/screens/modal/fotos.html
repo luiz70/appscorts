@@ -1,13 +1,13 @@
 <ion-modal-view class="modal-fotos" ng-controller="Fotos">
     <ion-content class="lock-contenido content-header-auto " has-bouncing="false" scroll="false">
     	<ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="false" show-pager="false" class="slider-fotos">
-          <ion-slide ng-repeat="i in [0,1,2,3,4,5]">
-           <div class="full-img" style="background:url(img/mini/{{perfilUsuario.id+'_'+i}}.jpg);"></div>
+          <ion-slide ng-repeat="i in perfilUsuario.Informacion.Fotos">
+           <div class="full-img" style="background:url({{config.http.getUrl()+'servidor/foto/'+perfilUsuario.IdServidor+'/'+i}});"></div>
           </ion-slide>
         </ion-slide-box>
         <div class="miniaturas_fotos">
         
-        	<button ng-repeat="i in [0,1,2,3,4,5]" style="background:url(img/mini/{{perfilUsuario.id+'_'+i}}.jpg);" ng-click="switchImg(i)"></button>
+        	<button ng-repeat="i in perfilUsuario.Informacion.Fotos" style="background:url({{config.http.getUrl()+'servidor/foto/'+perfilUsuario.IdServidor+'/'+i}});" ng-click="switchImg(i)"></button>
         </div>
          <button ng-click="cierraFotos()" class="cerrar-fotos"><i class="icon ion-android-close"></i></button>
     </ion-content>

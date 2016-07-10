@@ -39,3 +39,27 @@ angular.module('starter')
 	   }
 	}
 })
+.filter('peso', function () {
+	return function (input) {
+	   if(input){
+		   return input+"k"
+	   }
+	}
+})
+.filter('estatura', function () {
+	return function (input) {
+	   if(input){
+		   var i=input/100;
+		   return i+"m"
+	   }
+	}
+})
+// fitlers
+.filter('nl2br', ['$filter',
+  function($filter) {
+    return function(data) {
+      if (!data) return data;
+      return data.replace(/\n\r?/g, '<br />');
+    };
+  }
+])

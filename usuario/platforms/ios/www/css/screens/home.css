@@ -8,6 +8,15 @@
 .angular-google-map{
 	
 }
+.no-text>i, .yes-text>i{
+	margin-right:2vh;
+}
+.no-text{
+	color:#3B3B3B;
+}
+.yes-text{
+	color:#DF005A;
+}
 td-card{
 	    width: 100%;
     height: 70vh;
@@ -85,6 +94,7 @@ td-cards{
 	float:left;
 	height:70vh;
 	z-index: 2;
+	    background: #535353;
 }
 .home-view .profile .foto{
 	position: absolute;
@@ -217,4 +227,38 @@ td-cards{
     white-space: normal;
     line-height: 4vh;
 	font-weight: 300;
+}
+.home-view ion-header-bar .buttons{
+	padding-right:1vh;
+}
+.home-view ion-header-bar .buttons .favoritas{
+    max-width: 100vw !important;
+    width: auto !important;
+    font-size: 2vh !important;
+    font-weight: 200 !important;
+    height: 4vh !important;
+    position: absolute;
+    bottom: 1vh;
+    left: 0px;
+    width: 100% !important;
+    text-align: center;
+}
+.home-view ion-header-bar .buttons i{
+    width: 12vh;
+    height: 6vh;
+    max-width: 100vh;
+    font-size: 4vh;
+    text-align: center;
+    position: relative;
+    float: left;
+    display: inline-table;
+    line-height: 6vh;
+    margin-top: 1vh;
+}
+.home-view ion-header-bar .buttons.right{
+    width: 12vh !important;
+	opacity: 0.9;
+}
+.home-view ion-header-bar .buttons.l button::before{
+	margin: 0px;
 }

@@ -331,7 +331,7 @@
           var el = $element[0];
           var leftText = el.querySelector('.no-text');
           var rightText = el.querySelector('.yes-text');
-
+	
           // Force hardware acceleration for animation - better performance on first touch
           el.style.transform = el.style.webkitTransform = 'translate3d(0px, 0px, 0px)';
 
@@ -428,6 +428,7 @@
 
               .on('step', function(v) {
                 //Have the element spring over 400px
+				
                 el.style.transform = el.style.webkitTransform = 'translate3d(' + (startX - startX*v) + 'px, ' + (startY - startY*v) + 'px, 0) rotate(' + (startRotation - startRotation*v) + 'rad)';
                 if (rightText) rightText.style.opacity = 0;
                 if (leftText) leftText.style.opacity = 0;
@@ -494,7 +495,8 @@
                   })
 
                   .on('step', function(v) {
-                    existingCards[j].style.transform = existingCards[j].style.webkitTransform = 'translate3d(0, ' + top*v + 'px, 0) scale('+ scale*v +')';
+					  
+                    existingCards[j].style.transform = existingCards[j].style.webkitTransform = 'translate3d(0, -' + top*v + 'px, 0) scale('+ scale*v +')';
                   })
                   .start();
                 }, 100 * j);

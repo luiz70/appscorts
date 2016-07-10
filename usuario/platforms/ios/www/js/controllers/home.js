@@ -1,8 +1,38 @@
 ﻿angular.module('controllers')
-.controller('Home', function($scope,$rootScope,uiGmapGoogleMapApiManualLoader,$animate,uiGmapIsReady,uiGmapGoogleMapApi,$timeout,socket,Message,Memory,$ionicViewSwitcher,$state,$timeout,$ionicSlideBoxDelegate ,$interval,TDCardDelegate) {
+.controller('Home', function($scope,$rootScope,uiGmapGoogleMapApiManualLoader,$animate,uiGmapIsReady,uiGmapGoogleMapApi,$timeout,Message,Memory,$ionicViewSwitcher,$state,$timeout,$ionicSlideBoxDelegate ,$interval,TDCardDelegate) {
+	$scope.firsth=false;
+	$scope.$on('$ionicView.afterEnter',function(){
+		
+		if(!$scope.firsth){
+			$scope.firsth=true;
+			$rootScope.$broadcast("socket.connect",true)
+		}
+	})
+
+})
+.controller('CardsCtrl', function($rootScope,$scope, TDCardDelegate, $timeout,Socket) {
+	$scope.first=false
+	$rootScope.$on("socket.connect",function(data){
+		if(!$scope.first){
+			$scope.first=true;
+			$scope.refreshCards();
+		}
+	});
+	$scope.cardTypes=null;
+	$scope.cards={
+    master:null,
+    active: null,
+  }
+	$scope.obtenerServidoras=function(data){
+		$timeout(function(){
+		$scope.cardTypes=data;
+		$scope.inicializa();
+		});
+	}
 	
-	var cardTypes = [
-	{
+	$scope.inicializa=function(){
+  /*var cardTypes = [
+	/*{
 		nombre:"Alice",
 		edad:24,
 		ad:"!Hola, me encantaría que pasáramos un día de diversión juntos!",
@@ -35,62 +65,56 @@
 		rejected:false,
 		mensajes:0,
 		time:"1:33pm"
-	}
-	]
-$scope.allbitches=Array.prototype.slice.call(cardTypes, 0)
+	}*/
+	//]
 
- $scope.cards = {
-    master: Array.prototype.slice.call(cardTypes, 0),
-    active: Array.prototype.slice.call(cardTypes, 0),
+  $scope.cards = {
+    master: Array.prototype.slice.call($scope.cardTypes, 0),
+    active: Array.prototype.slice.call($scope.cardTypes, 0),
     discards: [],
     liked: [],
     disliked: []
   }
+}
 
   $scope.cardDestroyed = function(index) {
-	//$scope.allbitches.splice(index,1);
-    //$scope.cards.active.splice(index, 1);
+    $scope.cards.active.splice(index, 1);
   };
 
   $scope.addCard = function() {
     var newCard = cardTypes[0];
     $scope.cards.active.push(angular.extend({}, newCard));
   }
-$scope.reloadCards=function(){
-	$timeout(function() {
-	$scope.allbitches = Array.prototype.slice.call(cardTypes, 0)
-	},1)
-}
+
   $scope.refreshCards = function() {
-    // Set $scope.cards to null so that directive reloads
-    $scope.allbitches = null;
+	  $scope.cards.active = null;
+	  Socket.off("cliente_servidoras",$scope.obtenerServidoras);
+		Socket.on("cliente_servidoras",$scope.obtenerServidoras)
+		Socket.emit("cliente_servidoras")
+    /* Set $scope.cards to null so that directive reloads
+    $scope.cards.active = null;
     $timeout(function() {
-      $scope.allbitches = Array.prototype.slice.call(cardTypes, 0)
-	  console.log($scope.allbitches);
-    },1000);
+      $scope.cards.active = Array.prototype.slice.call($scope.cards.master, 0);
+    });*/
   }
-  
+
   $scope.$on('removeCard', function(event, element, card) {
-    //var discarded = $scope.cards.master.splice($scope.cards.master.indexOf(card), 1);
-    //$scope.cards.discards.push(discarded);
+    var discarded = $scope.cards.master.splice($scope.cards.master.indexOf(card), 1);
+    $scope.cards.discards.push(discarded);
   });
 
   $scope.cardSwipedLeft = function(index) {
-    console.log('LEFT SWIPE');
-    //var card = $scope.cards.active[index];
-    //$scope.cards.disliked.push(card);
-	$timeout(function() {
-	$scope.allbitches.splice(index,1);
-	},1)
+    var card = $scope.cards.active[index];
+    $scope.cards.disliked.push(card);
   };
   $scope.cardSwipedRight = function(index) {
-    console.log('RIGHT SWIPE');
-    //var card = $scope.cards.active[index];
-    //$scope.cards.liked.push(card);
-	$timeout(function() {
-	$scope.allbitches.splice(index,1);
-	},1);
+    var card = $scope.cards.active[index];
+    $scope.cards.liked.push(card);
+	Socket.emit("cliente_like",{IdServidor:card.IdServidor});
   };
 
-
 })
+
+.controller('CardCtrl', function($scope, TDCardDelegate) {
+
+});

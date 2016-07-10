@@ -1,39 +1,38 @@
-<ion-view view-title="Menu" class="modal-ajustes" can-swipe-back="false">
-
+<ion-modal-view class="modal-ajustes" ng-controller="Menu">
     <ion-header-bar  class="header-bar-menu">
-    	<div class="buttons r">
-			<button class="button button-icon button-clear ion-ios-arrow-right" ng-click="cierraAjustes()"></button>
+    	<div class="buttons">
+			<button class="button button-icon button-clear ion-ios-arrow-left" ng-click="cierraAjustes()"></button>
 		</div>
         <h1 class="title">Ajustes</h1>
     </ion-header-bar>
     <div class="encabezado-ajustes">
     	<div class="user-img"><img src="img/icon.png"></div>
         <div class="user-name text">{{"correo@gmail.com" | mayusFirst}}</div>
-        <div class="user-suscr text">socio oro</div>
+        <div class="user-suscr text">socio diamante</div>
     </div>
-    <ion-content class="menu-contenido content-header-auto original" has-bouncing="false">
+    <ion-content class="menu-contenido content-header-auto " has-bouncing="false">
         <ion-list can-swipe="false">
-            <ion-item  class="item-icon-left item-icon-right" ng-click="abreCuenta()">
+            <ion-item  class="item-icon-left item-icon-right">
                 <i class="icon ion-person menu-list-item-icon right"></i>
                 Mi cuenta
                 <i class="icon ion-ios-arrow-right left"></i>
             </ion-item>
-            <ion-item  class="item-icon-left item-icon-right" ng-click="abrePago()">
+            <ion-item  class="item-icon-left item-icon-right">
                 <i class="icon ion-card menu-list-item-icon right"></i>
                 Métodos de pago
                 <i class="icon ion-ios-arrow-right left"></i>
             </ion-item>
-            <!--ion-item  class="item-icon-left item-icon-right " ng-click="abrePreferencias()">
+            <ion-item  class="item-icon-left item-icon-right ">
                 <i class="icon ion-ios-gear menu-list-item-icon right"></i>
                 Preferencias
                 <i class="icon ion-ios-arrow-right left"></i>
-            </ion-item-->
-            <ion-item  class="item-icon-left item-icon-right" ng-click="abreTerminos()">
+            </ion-item>
+            <ion-item  class="item-icon-left item-icon-right">
                 <i class="icon ion-document-text menu-list-item-icon right"></i>
-                Aviso legal
+                Términos y condiciones
                 <i class="icon ion-ios-arrow-right left"></i>
             </ion-item>
-            <ion-item  class="item-icon-left item-icon-right" ng-click="abreInformacion()">
+            <ion-item  class="item-icon-left item-icon-right">
                 <i class="icon ion-ios-information menu-list-item-icon right"></i>
                 Información
                 <i class="icon ion-ios-arrow-right left"></i>
@@ -45,4 +44,4 @@
             </ion-item>
         </ion-list>
     </ion-content>
-</ion-view>
+</ion-modal-view>

@@ -1,54 +1,63 @@
-<ion-view view-title="Home" class="home-view" can-swipe-back="false">
+<ion-view view-title="Home" class="home-view" can-swipe-back="false" >
 	<ion-header-bar align-title="left" class="bar-main-header">
-		<div class="buttons">
+		<div class="buttons l">
 			<button class="button button-icon button-clear ion-navicon" ng-click="ajustes()"></button>
 		</div>
 		<div class="header-logo"></div>
-		<div class="buttons right">
-			<button class="button button-icon button-clear ion-chatbubble-working" ng-click="chats()"></button>
+		<div class="buttons right" ng-click="chats()">
+        	<i class="icon ion-android-favorite"></i>
+        	<button class="button button-clear favoritas" >Favoritas</button>
+			<!--button class="button button-icon button-clear ion-chatbubble-working" ng-click="chats()"></button-->
 		</div>
 	</ion-header-bar>
-	<ion-content class="main-content" has-bouncing="false" scroll="false" >
-    	<div class="reload-elements" ng-show="allbitches.length==0" ng-click="reloadCards()"> <i class="icon ion-android-refresh"></i></div>
-  		<!--div class="home-card" ng-repeat="bitch in available" id="card{{bitch.id}}">
-        	<div class="profile">
-            	<div class="foto" ng-click="" style="background: url(img/profiles/prof{{bitch.id}}.jpg)" ></div>
-                <div class="like left" ng-click="dislikeb(bitch)"> <i class="icon ion-close"></i></div>
-                <div class="like" ng-click="likeb(bitch)"><i class="icon ion-android-favorite"></i></div>
-                <div class="nombre" ng-click="perfil(bitch)">
-                	<div class="text">{{bitch.nombre}}</div>
-                    <div class="circulo">
-                    	<div>24</div>
-                        <div>años</div>
-                    </div>
-                </div>
-            </div>
-            <div class="info" ng-click="perfil(bitch)">
-            	<div>{{bitch.ad}}</div>
-            </div>
-        </div-->
-        <td-cards delegate-handle="cards" >
-          <td-card ng-repeat="bitch in allbitches" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" min-threshold="0.2">
-            <!--div class="discard" ng-click="onClickTransitionOut(card)">DISCARD</div-->
+	<ion-content class="main-content" has-bouncing="false" scroll="false" ng-controller="CardsCtrl">
+      
+
+      <!-- *************************
+        TD Cards
+        - We start off with an ng-if so that the cards are not generated
+          unless $scope.cards is not 'null'
+      ************************* -->
+      <div ng-if="cards.active">
+        <td-cards>
+          <td-card delegate-handle="cards" ng-repeat="bitch in cards.active" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)">
+            <!--div class="image" >
+              <div class="no-text"><i class="icon ion-thumbsdown"></i></div>
+              <div class="yes-text"><i class="icon ion-thumbsup"></i></div>
+              
+              <div class="discard" ng-click="onClickTransitionOut(card)">DISCARD</div>
+              <img ng-src="{{ card.image }}">
+            </div-->
             <div class="profile">
-            	<div class="foto" ng-click="perfil(bitch)" style="background: url(img/profiles/prof{{bitch.id}}.jpg)" ></div>
-                <div class="crop-likes" style="display:none">
+            	<div class="foto" ng-click="perfil(bitch)" style="background: url({{config.http.getUrl()+'servidor/foto/'+bitch.IdServidor+'/0'}})" ></div>
+                <div class="no-text"><i class="icon ion-close"></i>Pasar</div>
+              <div class="yes-text"><i class="icon ion-android-favorite"></i>Favorita</div>
+                <div class="crop-likes" >
                 <div class="like left" ng-click="onClickTransitionOut(bitch)"> <i class="icon ion-close"></i></div>
                 <div class="like" ng-click="onClickTransitionRight($event,bitch)" ><i class="icon ion-android-favorite"></i></div>
                 </div>
                 <div class="nombre" ng-click="perfil(bitch)">
-                	<div class="text">{{bitch.nombre}}</div>
+                	<div class="text">{{bitch.Nombre}}</div>
                     <div class="circulo">
-                    	<div>24</div>
+                    	<div>{{bitch.Edad}}</div>
                         <div>años</div>
                     </div>
                 </div>
             </div>
           </td-card>
-          
+          <!-- *************************
+            End Card
+            - 'drag' is set to false. The user cannot drag it.
+            - 'refreshCards()' reloads all cards that have NOT been discarded.
+          ************************* -->
+          <td-card id="end-card" drag="false">
+            <i class="icon ion-ios-refresh" ng-click="refreshCards()"></i>
+          </td-card>
         </td-cards>
         <div class="info" ng-click="">
-            	<div>{{(allbitches.length)?allbitches[0].ad:""}}</div>
+            	<div>{{(cards.active.length)?cards.active[0].Anuncio:""}}</div>
             </div>
+      </div>
+
 	</ion-content>
 </ion-view>
