@@ -4,8 +4,8 @@
 /* maxlength on the textarea will prevent /*
 /* it from getting too large also */
 .bar-footer {
-  overflow: visible !important;
-      background: #e1e1e1 !important;
+    overflow: visible !important;
+    background: #f8f8f8 !important;
 }
 
 .bar-footer textarea {

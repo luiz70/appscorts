@@ -15,7 +15,7 @@
 	color:#3B3B3B;
 }
 .yes-text{
-	color:#DF005A;
+	color:#429200;
 }
 td-card{
 	    width: 100%;
@@ -181,6 +181,21 @@ td-cards{
     margin: auto;
     padding: 1vh;
 	opacity: 0.95;
+	animation-name: example;
+    animation-duration: 1s;
+	animation-iteration-count:infinite;
+}
+@keyframes example {
+    0% {    box-shadow: 0px 0px 0px 0px rgba(255,255,255,1);}
+    50% {    box-shadow: 0px 0px 20px 0px rgba(255,255,255,0.8);}
+	100%{    box-shadow: 0px 0px 0px 0px rgba(255,255,255,1);}
+}
+.like-icon{
+	-webkit-mask-image: url(../../img/icons/like.png);
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    background: #429200;
 }
 .home-view  .profile .nombre .circulo div{
 	    position: relative;
@@ -232,16 +247,17 @@ td-cards{
 	padding-right:1vh;
 }
 .home-view ion-header-bar .buttons .favoritas{
-    max-width: 100vw !important;
+       max-width: 100vw !important;
     width: auto !important;
     font-size: 2vh !important;
     font-weight: 200 !important;
-    height: 4vh !important;
+    height: 8vh !important;
     position: absolute;
     bottom: 1vh;
     left: 0px;
     width: 100% !important;
     text-align: center;
+    text-transform: uppercase !important;
 }
 .home-view ion-header-bar .buttons i{
     width: 12vh;

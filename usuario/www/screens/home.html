@@ -5,8 +5,8 @@
 		</div>
 		<div class="header-logo"></div>
 		<div class="buttons right" ng-click="chats()">
-        	<i class="icon ion-android-favorite"></i>
-        	<button class="button button-clear favoritas" >Favoritas</button>
+        	<!--i class="icon ion-android-favorite"></i-->
+        	<button class="button button-clear favoritas" >favoriet</button>
 			<!--button class="button button-icon button-clear ion-chatbubble-working" ng-click="chats()"></button-->
 		</div>
 	</ion-header-bar>
@@ -30,11 +30,11 @@
             </div-->
             <div class="profile">
             	<div class="foto" ng-click="perfil(bitch)" image-lazy-src="{{config.http.getUrl()+'servidor/foto/'+bitch.IdServidor+'/0'}}" image-lazy-background-image="true"></div>
-                <div class="no-text"><i class="icon ion-close"></i>Pasar</div>
-              <div class="yes-text"><i class="icon ion-android-favorite"></i>Favorita</div>
-                <div class="crop-likes" ng-click="perfil(bitch)">
+                <div class="no-text"><i class="icon ion-close" ng-hide="true"></i>Passeren</div>
+              <div class="yes-text"><i class="like-icon"></i>Favoriet</div>
+                <div class="crop-likes" ng-click="perfil(bitch)" >
                 <div class="like left" ng-click="onClickTransitionOut(bitch)"> <i class="icon ion-close"></i></div>
-                <div class="like" ng-click="onClickTransitionRight($event,bitch)" ><i class="icon ion-android-favorite"></i></div>
+                <div class="like" ng-click="onClickTransitionRight($event,bitch)" ><i class="like-icon"></i></div>
                 </div>
                 <div class="nombre" ng-click="perfil(bitch)">
                 	<div class="text">{{bitch.Nombre}}</div>

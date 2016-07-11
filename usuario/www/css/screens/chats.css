@@ -105,11 +105,11 @@ ion-list .item-chat>.delete>i{
     top: 10vh;
     right: 0px;
     height: 8vh;
-    background: #be2251;
+    background: rgb(247, 208, 45);
     line-height: 8vh;
     text-align: center;
     font-size: 4vh;
-    color: #eaeaea;
+    color: #212121;
     font-weight: 400;
 }
 .chat-view .info-msj{
