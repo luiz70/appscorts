@@ -146,7 +146,7 @@ img.profile-pic.right {
   top: -3px;
 }
 
-input, textarea, .item-input, .item-input-wrapper {
+ion-footer-bar input, ion-footer-bar textarea, ion-footer-bar .item-input, ion-footer-bar .item-input-wrapper {
   background: none !important;
 }
 

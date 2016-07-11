@@ -5,7 +5,7 @@
 		</div>
         <h1 class="title">Enviar Ubicación</h1>
         <div class="buttons r">
-			<!--button class="button button-clear"  >Aceptar</button-->
+			<button class="button button-clear" ng-click="enviarUbicacion()">Enviar</button>
 		</div>
     </ion-header-bar>
     <ion-content class="" has-bouncing="false">
@@ -13,11 +13,10 @@
     	<input class="buscador" placeholder="Busca un lugar" ng-model="buscador.texto" ng-change="buscaTexto()">
         <i class="icon ion-ios-search-strong"></i>
     </div>
+    	<div id="Mapa"></div>
        <ion-list can-swipe="false" class="lugares" >
-       <ion-item  class="item item-avatar" ng-click="enviarUbicacion()">
-       <h2>Mi ubicación actual</h2>
-       </ion-item>
-       <ion-item ng-repeat="lugar in resultados" class="item item-avatar" ng-click="enviarUbicacion(lugar)">
+       
+       <ion-item ng-repeat="lugar in resultados" class="item item-avatar" ng-click="seleccionarLugar(lugar)">
        <h2>{{lugar.name}}</h2>
       <p>{{lugar.formatted_address}}</p>
        </ion-item>

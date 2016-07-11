@@ -10,11 +10,27 @@
 	</ion-header-bar>
 	<ion-content class="main-content" has-bouncing="true" scroll="true">
   		<ion-list can-swipe="false">
-            <ion-item  class="item-avatar item-chat" ng-repeat="bitch in chats" >
-                <div class="img" style="background: url({{config.http.getUrl()+'servidor/foto/'+bitch.IdServidor+'/0'}});" ng-click="openPerfil(bitch)"></div>
+            <ion-item  class="item-avatar item-chat" ng-repeat="bitch in chats" ng-if="!bitch.Grupo">
+                <div class="img" style="background: url({{config.http.getUrl()+'servidor/foto/'+bitch.Id+'/0'}});" ng-click="openPerfil(bitch)"></div>
                 <div class="hora">{{bitch.Hora.toLowerCase()}}<i class="icon ion-ios-arrow-right"></i></div>
                 <h2>{{bitch.Nombre}}</h2>
-      			<p>{{bitch.Mensajes}}</p>
+      			<p>{{bitch.Mensajes<0?"Toca para comenzar un chat":(bitch.Mensajes==0?"No hay mensajes pendientes":bitch.Mensajes+" Mensaje"+(bitch.Mensajes>1?'s':"")+" sin leer")}}</p>
+                <div class="cover" ng-click="openChat(bitch);"></div>
+                <div class="delete" ng-click="opcionesChat(bitch);"><i class="icon ion-ios-gear"></i></div>
+            </ion-item>
+            <!--ion-item  class="item-avatar item-chat" >
+                <div class="img" style="background: url(img/profiles/prof3.jpg);"></div>
+                
+                <h2>sandra</h2>
+      			<p>No disponible</p>
+                <div class="cover offline"></div>
+            </ion-item-->
+            <div class="division-grupos" ng-show="false">Grupos</div>
+            <ion-item  class="item-avatar item-chat" ng-repeat="bitch in chats" ng-if="bitch.Grupo">
+                <div class="img" style="background-image: url('img/icon.png');" ng-click="openPerfil(bitch)"></div>
+                <div class="hora">{{bitch.Hora.toLowerCase()}}<i class="icon ion-ios-arrow-right"></i></div>
+                <h2>{{bitch.Nombre}}</h2>
+      			<p>{{bitch.Mensajes<0?"Toca para comenzar un chat":(bitch.Mensajes==0?"No hay mensajes pendientes":bitch.Mensajes+" Mensaje"+(bitch.Mensajes>1?'s':"")+" sin leer")}}</p>
                 <div class="cover" ng-click="openChat(bitch);"></div>
                 <div class="delete" ng-click="opcionesChat(bitch);"><i class="icon ion-ios-gear"></i></div>
             </ion-item>

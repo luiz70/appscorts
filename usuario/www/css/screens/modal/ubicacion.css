@@ -20,19 +20,20 @@ ion-modal-view.modal-ubicacion .barra-buscadora{
 	z-index:3;
 }
 ion-modal-view.modal-ubicacion .barra-buscadora input{
-	position: relative;
+    position: relative;
     float: left;
     width: 100%;
-    height: auto;
+    height: 7vh;
     font-size: 3vh;
-    background: #d8d8d8;
-    padding: 1vh 2vh 1vh 5vh;
+    background: #e6e6e6;
+    padding: 0vh 2vh 0vh 5vh;
     border: none;
     color: #181818;
+    line-height: 7vh;
 }
 ion-modal-view.modal-ubicacion .barra-buscadora i{
     position: absolute;
-    top: 1vh;
+    top: 2vh;
     left: 0.5vh;
     font-size: 4vh;
     width: 4vh;
@@ -43,23 +44,33 @@ ion-modal-view.modal-ubicacion .barra-buscadora input::-webkit-input-placeholder
 	color:#575757;
 }
 ion-modal-view.modal-ubicacion .lugares{
-	position: absolute;
+position: absolute;
     top: 0px;
     bottom: 0px;
     left: 0px;
     right: 0px;
     width: 100vw;
-    height: 90vh;
-	background:url(../../../img/background.png);
-	background-size:cover;
-	background-position:center;
-	padding-top:7vh;
+    height: auto;
+    
+    padding-top: 7vh;
+    border-top: solid 0.5vh #000;
 }
 ion-modal-view.modal-ubicacion .lugares .item{
 	padding: 2vh;
     background: rgba(255, 255, 255, 0.86);
     border: none;
     margin-bottom: 0.5vh;
+	width: 100.5vw;
+}
+#Mapa{
+	position: absolute;
+    top: 7vh;
+    left: 0px;
+    width: 100vw;
+    height: 83vh;
+	background: url(../../../img/background.png);
+    background-size: cover;
+    background-position: center;
 }
 ion-modal-view.modal-ubicacion .lugares .item h2{
 	    font-size: 2.8vh;

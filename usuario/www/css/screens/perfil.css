@@ -91,7 +91,7 @@
     height: 10vh;
     margin-left: 0.5vh;
     margin-right: 0.5vh;
-    border: solid 1px #4D4D4D;
+    border: none;
     display: inline-block;
 }
 .perfil-view .home-card .profile button.solicitar{

@@ -94,7 +94,7 @@ td-cards{
 	float:left;
 	height:70vh;
 	z-index: 2;
-	    background: #535353;
+	    background:url(../../img/background.png);
 }
 .home-view .profile .foto{
 	position: absolute;
@@ -102,7 +102,7 @@ td-cards{
     bottom: 0;
     left: 0;
     right: 0;
-    background: url(../../img/test-img.jpg);
+    background: none;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;

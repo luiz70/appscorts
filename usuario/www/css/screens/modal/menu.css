@@ -300,4 +300,60 @@ ion-modal-view.modal-informacion ion-content .version{
     font-size: 3vh;
     padding: 1vh;
 }
-    
+ion-modal-view.modal-informacion.modal-favoritas{
+	width: 90vw;
+    height: 90vh !important;
+    min-height: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin: auto;
+    right: 0px;
+    bottom: 0px;
+	
+}
+ion-modal-view.modal-informacion.modal-favoritas ion-content{
+	padding:0px;
+}
+ion-modal-view.modal-informacion.modal-favoritas ion-list .item-chat>h2{
+    color: #060606;
+}
+ion-modal-view.modal-informacion.modal-favoritas ion-list .item-chat>p{
+    color: #060606;
+} 
+ion-modal-view.modal-informacion.modal-favoritas ion-list .item-chat>.cover{
+    left: 0px !important;
+    z-index: 10;
+}
+ion-modal-view.modal-informacion.modal-favoritas ion-list .item-chat{
+	padding-right: 8vh;
+	border-bottom: solid 1px #c8c8c8;
+}
+ion-modal-view.modal-informacion.modal-favoritas ion-list .item-chat>label{
+	position: absolute;
+    top: 0px;
+    padding: 0px;
+	    width: 28px;
+    height: 28px !important;
+    min-height: 28px;
+	overflow: visible;
+	    bottom: 0px;
+    margin: auto;
+	top:0px;
+	right:1vh;
+}
+ion-modal-view.modal-informacion.modal-favoritas ion-list .item-chat>label>div.item-content{
+	display:none;
+}
+ion-modal-view.modal-informacion.modal-favoritas ion-list .item-chat>label>div.checkbox{
+	    padding: 0px !important;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+}
+.division-grupos{
+	    background: rgba(255, 255, 255, 0.95);
+    padding: 2vh;
+    font-size: 3vh;
+    font-weight: 200;
+}
