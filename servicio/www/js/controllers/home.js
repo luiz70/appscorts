@@ -1,5 +1,6 @@
 ﻿angular.module('controllers')
-.controller('Home', function($scope,$rootScope,uiGmapGoogleMapApiManualLoader,$animate,uiGmapIsReady,uiGmapGoogleMapApi,$timeout,socket,Message,Memory,$ionicViewSwitcher,$state,$timeout,$ionicSlideBoxDelegate ,$interval) {
+.controller('Home', function($scope,$rootScope,uiGmapGoogleMapApiManualLoader,$animate,uiGmapIsReady,uiGmapGoogleMapApi,$timeout,Socket,Message,Memory,$ionicViewSwitcher,$state,$timeout,$ionicSlideBoxDelegate ,$interval) {
+	console.log($rootScope.Usuario);
 	$scope.available=[];
 	$scope.online={
 		is:true,
@@ -14,14 +15,14 @@
 		}
 	}
 	$scope.refreshBitches=function(){
-		for(var i=0;i<$rootScope.bitches.length;i++)
+		/*for(var i=0;i<$rootScope.bitches.length;i++)
 		$scope.available.push($rootScope.bitches[i])
 		$timeout(function(){
 			$(".home-card").animate({
 				'margin-top':"0px"
 			},300,function(){
 			})
-		},300);
+		},300);*/
 	}
 	$scope.refreshBitches();
 	$scope.likeb=function(bitch){

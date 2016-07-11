@@ -5,16 +5,15 @@
 		</div>
 		<h1 class="title perfil">Chats</h1>
 		<div class="buttons right">
-			<button class="button button-icon button-clear ion-android-more-vertical" ng-click="openOptions()" ></button>
 		</div>
 	</ion-header-bar>
 	<ion-content class="main-content" has-bouncing="true" scroll="true">
   		<ion-list can-swipe="false">
-            <ion-item  class="item-avatar item-chat" ng-repeat="bitch in bitches" >
+            <ion-item  class="item-avatar item-chat" ng-repeat="chat in chats" >
                 <div class="img" style="background: url(img/profiles/profmr.png);"></div>
                 <div class="hora">{{bitch.time}}<i class="icon ion-ios-arrow-right"></i></div>
-                <h2>{{bitch.nombre}}</h2>
-      			<p>{{bitch.mensajes>0?bitch.mensajes+' mensajes sin leer':'No hay mensajes pendientes'}}</p>
+                <h2>{{chat.Nombre}}</h2>
+      			<p>{{chat.Mensajes<0?"Tik op om een chat starten":(chat.Mensajes==0?"Er zijn geen berichten in afwachting van":chat.Mensajes+" Bericht"+(chat.Mensajes>1?'s':"")+" ongelezen")}}</p>
                 <div class="cover" ng-click="openChat(bitch);"></div>
             </ion-item>
             

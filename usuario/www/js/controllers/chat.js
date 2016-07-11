@@ -185,8 +185,8 @@
 			Usuario:1,
 			Confirmado:0,
 			Ubicacion:ubicacion,
-			Latitud:ubicacion.latitude,
-			Longitud:ubicacion.longitude,
+			Latitud:ubicacion?ubicacion.latitude:null,
+			Longitud:ubicacion?ubicacion.longitude:null,
       	};
 		if(ubicacion) {
 			message.Mensaje=ubicacion.Direccion;

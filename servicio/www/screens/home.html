@@ -5,7 +5,8 @@
 		</div>
 		<div class="header-logo"></div>
 		<div class="buttons right">
-			<button class="button button-icon button-clear ion-chatbubble-working" ng-click="openChats()" ng-class="{'disabl':!online.is}"></button>
+        	<button class="button button-clear favoritas" ng-click="openChats()"  >Chats</button>
+			<!--button class="button button-icon button-clear ion-chatbubble-working" ng-click="openChats()" ng-class="{'disabl':!online.is}"></button-->
 		</div>
 	</ion-header-bar>
 	<ion-content class="main-content" has-bouncing="false" scroll="true">
@@ -16,11 +17,11 @@
                 	<div ng-repeat="i in [1,2,3,4,5]" style="background: url(img/mini/{{perfilUsuario.id}}_{{i}}.jpg)" ng-click="openimg('img/mini/{{perfilUsuario.id}}_{{i}}.jpg')"></div>
                 </div>
                 <!--button class="solicitar" ng-click="solicitar()">Solicitar</button-->
-                <button class="like" ng-click="edit()" ng-hide="added"><i class="icon ion-edit"></i></button>
+                <!--button class="like" ng-click="edit()" ng-hide="added"><i class="icon ion-edit"></i></button-->
             </div>
             <div class="info " >
             	<div class="aboutme">
-                	<div class="title">Sobre mí</div>
+                	<div class="title">Over mij</div>
                     <div class="icons">
                     	<!--i class="glyph-icon flaticon-fashion" ></i>
                         <div>3</div>
@@ -28,36 +29,44 @@
                         <div>5</div>
                     	<i class="glyph-icon flaticon-nature" style="color: #40A2EA;;"></i>
                         <div>4</div-->
-                        <ion-toggle ng-model="online.is" toggle-class="toggle-energized">{{online.is?'conectado':'desconectado'}}</ion-toggle>
+                        <ion-toggle ng-model="online.is" toggle-class="toggle-energized">{{online.is?'aangesloten':'losgekoppeld'}}</ion-toggle>
                     </div>
                     <div class="content">
                     {{perfilUsuario.about}}
                     </div>
                     <div class="description">
                     	<div class="element">
-                    		<button class="title">Estatura:</button>
-                            <button class="datos">{{perfilUsuario.estatura}}m</button>
+                    		<button class="title">Hoogte:</button>
+                            <button class="datos">{{Usuario.Estatura | estatura}}</button>
                         </div>
                         <div class="element">
-                    		<button class="title">Peso:</button>
-                            <button class="datos">{{perfilUsuario.peso}}k</button>
+                    		<button class="title">Gewicht:</button>
+                            <button class="datos">{{Usuario.Peso | peso}}</button>
                         </div>
                         <div class="element">
-                    		<button class="title">Medidas:</button>
-                            <button class="datos">{{perfilUsuario.medidas}}</button>
+                    		<button class="title">Maatregelen:</button>
+                            <button class="datos">{{Usuario.Medidas}}</button>
                         </div>
                         <div class="element">
-                    		<button class="title">Nacionalidad:</button>
-                            <button class="datos">{{perfilUsuario.nacionalidad}}</button>
+                    		<button class="title">Oogkleur:</button>
+                            <button class="datos">{{"Café"}}</button>
                         </div>
                         <div class="element">
-                    		<button class="title">Disponibilidad de viaje:</button>
-                            <button class="datos">{{perfilUsuario.viajes?'sí':'no'}}</button>
+                    		<button class="title">Nationaliteit:</button>
+                            <button class="datos">{{Usuario.Nacionalidad}}</button>
                         </div>
                         <div class="element">
+                    		<button class="title">Talen:</button>
+                            <button class="datos">{{"Ingles y español"}}</button>
+                        </div>
+                        <div class="element">
+                    		<button class="title">Reizen beschikbaarheid:</button>
+                            <button class="datos">{{Usuario.Viajes?'sí':'no'}}</button>
+                        </div>
+                        <!--div class="element">
                     		<button class="title">Cenas:</button>
                             <button class="datos">{{perfilUsuario.cenas?'sí':'no'}}</button>
-                        </div>
+                        </div-->
                     </div>
                 </div>
             </div>

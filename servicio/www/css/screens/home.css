@@ -8,6 +8,10 @@
 .angular-google-map{
 	
 }
+.toggle.toggle-energized input:checked + .track {
+    border-color: #d62c64;
+    background-color: #f95792;
+}
  .gm-style-cc, .gm-style > div + div {
 	display:none
  }

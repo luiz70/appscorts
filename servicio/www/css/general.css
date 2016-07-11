@@ -133,6 +133,9 @@ ion-header-bar .title {
 	font-weight: 300 !important;
 	 height: 44px;
 }
+.bar-main-header .button::before{
+	margin:0px;
+}
 .bar.bar-main-header .title {
     color: #fff;
     text-align: center;
@@ -161,6 +164,7 @@ ion-header-bar>.buttons>button:before{
 	right: 0px;
 	top: 0px;
     height: 10vh;
+	    padding-right: 1vh;
 }
 .bar{
 	z-index:10000;
@@ -173,15 +177,15 @@ ion-header-bar>.buttons>button:before{
 	border: solid 2px #D4F100;
 }
 .bar-main-header .header-logo{
-	background: url(../img/logo.png);
+    background: url(../img/logo.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
     top: 1.5vh;
     bottom: 1.5vh;
-    left: 10vh;
-    right: 10vh;
+    left: 7vh;
+    right: 11vh;
 }
 ion-header-bar > .title.show{
 	display: inline-block !important;
