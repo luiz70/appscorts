@@ -35,6 +35,7 @@ angular.module('controllers')
 						$scope.Login.Contrasena="";
 					});
 				}else{
+					$rootScope.Usuario=respuesta.Usuario;
 					Memory.set("Usuario",respuesta.Usuario);
 					$rootScope.fromLogin=true;
 					$ionicViewSwitcher.nextDirection('forward');

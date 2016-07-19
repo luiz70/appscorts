@@ -1,16 +1,19 @@
 ﻿angular.module('controllers')
-.controller('Home', function($scope,$rootScope,uiGmapGoogleMapApiManualLoader,$animate,uiGmapIsReady,uiGmapGoogleMapApi,$timeout,Message,Memory,$ionicViewSwitcher,$state,$timeout,$ionicSlideBoxDelegate ,$interval,TDCardDelegate) {
+.controller('Home', function($scope,$rootScope,uiGmapGoogleMapApiManualLoader,$animate,uiGmapIsReady,uiGmapGoogleMapApi,$timeout,Message,Memory,$ionicViewSwitcher,$state,$timeout,$ionicSlideBoxDelegate ,$interval,TDCardDelegate,Socket) {
 	$scope.firsth=false;
+	console.log($rootScope.Usuario);
 	$scope.$on('$ionicView.afterEnter',function(){
-		
+		if(!Socket.status())Socket.open();
 		if(!$scope.firsth){
 			$scope.firsth=true;
 			$rootScope.$broadcast("socket.connect",true)
 		}
 	})
+	
 
 })
 .controller('CardsCtrl', function($rootScope,$scope, TDCardDelegate, $timeout,Socket) {
+	
 	$scope.first=false
 	$rootScope.$on("socket.connect",function(data){
 		if(!$scope.first){

@@ -72,7 +72,8 @@ angular.module('services')
 			if(socket)socket.removeListener(event,funcion);
 		},
 		status:function(){
-			return socket.connected
+			if(!socket)return false;
+			else return socket.connected
 		},
 		close:function(){
 			if(socket){

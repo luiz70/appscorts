@@ -13,7 +13,7 @@
     <div class="foto"><div></div></div>
     <div class="linea">
         <div class="titulo">Nickname</div>
-        <div class="valor">{{"Usuario3432"}}</div>
+        <div class="valor">{{Usuario.Alias}}</div>
         </div>
         <div class="linea">
         <div class="titulo">Correo</div>
@@ -24,6 +24,7 @@
         <div class="valor">{{"Oro"}}</div>
         </div>
         <!--button class="boton-ajustes">Editar cuenta</button-->
-        <button class="boton-ajustes">Cambiar contraseña</button>
+        <button class="boton-ajustes" ng-click="cambiarNick()">Cambiar nickname</button>
+        <button class="boton-ajustes" ng-click="cambiarContrasena()">Cambiar contraseña</button>
     </ion-content>
 </ion-view>

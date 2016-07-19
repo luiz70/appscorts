@@ -47,7 +47,7 @@
      * Set the X position of the card.
      */
     setX: function(x) {
-      this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + x + 'px,' + this.y + 'px, 0)';
+      this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + x + 'px, -' + this.y + 'px, 0)';
       this.x = x;
       this.startX = x;
     },
@@ -56,7 +56,7 @@
      * Set the Y position of the card.
      */
     setY: function(y) {
-      this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + this.x + 'px,' + y + 'px, 0)';
+      this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + this.x + 'px, -' + y + 'px, 0)';
       this.y = y;
       this.startY = y;
     },
@@ -184,7 +184,7 @@
       var duration = (draggable) ? (0.3 - Math.min(Math.max(Math.abs(velocityX)/10, 0.05), 0.2)) : defaults.duration;
 
       ionic.requestAnimationFrame(function() {
-        self.el.style.transform = self.el.style.webkitTransform = 'translate3d(' + targetX + 'px, ' + targetY + 'px,0) rotate(' + self.rotationAngle + 'rad)';
+        self.el.style.transform = self.el.style.webkitTransform = 'translate3d(' + targetX + 'px, -' + targetY + 'px,0) rotate(' + self.rotationAngle + 'rad)';
         self.el.style.transition = self.el.style.webkitTransition = 'all ' + duration + 's ease-in-out';
       });
 
@@ -429,7 +429,7 @@
               .on('step', function(v) {
                 //Have the element spring over 400px
 				
-                el.style.transform = el.style.webkitTransform = 'translate3d(' + (startX - startX*v) + 'px, ' + (startY - startY*v) + 'px, 0) rotate(' + (startRotation - startRotation*v) + 'rad)';
+                el.style.transform = el.style.webkitTransform = 'translate3d(' + (startX - startX*v) + 'px, -' + (startY - startY*v) + 'px, 0) rotate(' + (startRotation - startRotation*v) + 'rad)';
                 if (rightText) rightText.style.opacity = 0;
                 if (leftText) leftText.style.opacity = 0;
               })
@@ -516,7 +516,7 @@
           position = card.style.transform || card.style.webkitTransform;
           newTop = Math.max(max - 25, Math.min(max, max - (max * Math.abs(amt))));
           newScale = (1 - (Math.max(i - 1, Math.min(i, i - (i * Math.abs(amt)))) / 10));
-          card.style.transform = card.style.webkitTransform = 'translate3d(0, ' + newTop + 'px, 0) scale('+ newScale+')';
+          card.style.transform = card.style.webkitTransform = 'translate3d(0, -' + newTop + 'px, 0) scale('+ newScale+')';
         };
 
         this.partial = function(amt) {

@@ -1,7 +1,7 @@
 angular.module('controllers')
 .controller('Aplicacion', function($scope,$rootScope,Memory,Message,$state,$ionicViewSwitcher,$timeout,Socket) {
 	$rootScope.lock();
-	Socket.open();
+	
 	$scope.ajustes=function(){
 		//Message.showModal('screens/modal/ajustes.html');
 		$ionicViewSwitcher.nextDirection('back');
