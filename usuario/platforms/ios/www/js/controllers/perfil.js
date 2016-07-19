@@ -31,7 +31,7 @@
 	
 	
 	$scope.precios=function(){
-		Message.alert("Precios","<div class='precio-perfil' style='margin-top:2vh;'>Cena: $3,000</div><div  class='precio-perfil'>Compañia completa: $8,000</div>");
+		Message.alert("Tarifas","<div class='precio-perfil' style='margin-top:2vh;'>Cenas o reuniones: $4,000</div><div  class='precio-perfil'>Compañia completa: $8,000</div>");
 	}
 	$scope.like=function(){
 		Socket.emit("cliente_like",{IdServidor:$rootScope.perfilUsuario.IdServidor});

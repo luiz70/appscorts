@@ -15,13 +15,13 @@
                 	<div ng-repeat="i in perfilUsuario.Informacion.Fotos" ng-if="$index>0" style="background: url({{config.http.getUrl()+'servidor/foto/'+perfilUsuario.IdServidor+'/'+i}})" ng-click="openimg(i)"></div>
                 </div>
                 <!--button class="solicitar" ng-click="solicitar()">Solicitar</button-->
-                <button class="precios" ng-click="precios()">Tarifas</button>
+                <button class="precios" ng-click="precios()">Prijzen</button>
                 <button class="like" ng-click="like()" ng-hide="perfilUsuario.Informacion.Chat"><i class="icon ion-ios-heart"></i></button>
                 <button class="like" ng-click="chat()" ng-hide="!perfilUsuario.Informacion.Chat"><i class="icon ion-chatbubble-working" ng-class="{'chat':perfilUsuario.Informacion.Chat}"></i></button>
             </div>
             <div class="info " >
             	<div class="aboutme">
-                	<div class="title">Sobre mí</div>
+                	<div class="title">Over mij</div>
                     <!--div class="icons">
                     	<i class="glyph-icon flaticon-fashion" ></i>
                         <div>3</div>
@@ -35,31 +35,31 @@
                     </div>
                     <div class="description">
                     	<div class="element">
-                    		<button class="title">Estatura:</button>
+                    		<button class="title">Hoogte:</button>
                             <button class="datos">{{perfilUsuario.Informacion.Estatura | estatura}}</button>
                         </div>
                         <div class="element">
-                    		<button class="title">Peso:</button>
+                    		<button class="title">Gewicht:</button>
                             <button class="datos">{{perfilUsuario.Informacion.Peso | peso}}</button>
                         </div>
                         <div class="element">
-                    		<button class="title">Medidas:</button>
+                    		<button class="title">Maatregelen:</button>
                             <button class="datos">{{perfilUsuario.Informacion.Medidas}}</button>
                         </div>
                         <div class="element">
-                    		<button class="title">Color de ojos:</button>
+                    		<button class="title">Oogkleur:</button>
                             <button class="datos">{{"Café"}}</button>
                         </div>
                         <div class="element">
-                    		<button class="title">Nacionalidad:</button>
+                    		<button class="title">Nationaliteit:</button>
                             <button class="datos">{{perfilUsuario.Informacion.Nacionalidad}}</button>
                         </div>
                         <div class="element">
-                    		<button class="title">Idiomas:</button>
+                    		<button class="title">Talen:</button>
                             <button class="datos">{{"Ingles y español"}}</button>
                         </div>
                         <div class="element">
-                    		<button class="title">Disponibilidad de viaje:</button>
+                    		<button class="title">Reizen beschikbaarheid:</button>
                             <button class="datos">{{perfilUsuario.Informacion.Viajes?'sí':'no'}}</button>
                         </div>
                         <!--div class="element">

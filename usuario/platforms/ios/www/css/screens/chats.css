@@ -4,25 +4,27 @@
     font-weight: 300 !important;
     color: #F1F1F1 !important;
 }
-.chats-view ion-list .item-chat{
+ion-list .item-chat{
     padding: 2vh 2vh 2vh 13vh;
     min-height: 13vh;
     background: rgba(255, 255, 255, 0.04);
     margin-bottom: 0.5vh;
 }
-.chats-view ion-list .item-chat div.img{
+ion-list .item-chat div.img{
    position: absolute;
     top: 0px;
     bottom: 0px;
     width: 9vh;
     height: 9vh;
     border-radius: 100%;
+	    background: rgba(62, 62, 62, 0.7);
+    border: solid 2px #fff;
     background-size: cover !important;
     background-position: top center !important;
     left: 2vh;
     margin: auto;
 }
-.chats-view ion-list .item-chat div.hora{
+ion-list .item-chat div.hora{
     position: absolute;
     top: 2vh;
     right: 1vh;
@@ -30,12 +32,12 @@
     color: #797979;
     width: auto;
 }
-.chats-view ion-list .item-chat div.hora>i{
+ion-list .item-chat div.hora>i{
 	margin-left: 1vh;
     font-size: 3vh;
 }
 
-.chats-view ion-list .item-chat>h2{
+ion-list .item-chat>h2{
 	font-size: 3vh;
     color: #F5F5F5;
     height: 4.5vh;
@@ -44,7 +46,7 @@
     padding-top: 1.5vh;
 	font-weight: 400;
 }
-.chats-view ion-list .item-chat>p{
+ion-list .item-chat>p{
 	font-size: 2.5vh;
     color: #B8B7B7;
     height: 4.5vh;
@@ -52,7 +54,7 @@
     margin: 0px;
     font-weight: 300;
 }
-.chats-view ion-list .item-chat>.cover{
+ion-list .item-chat>.cover{
 	position:absolute;
 	top:0px;
 	bottom:0px;
@@ -61,7 +63,7 @@
 	background:none;
 	left:12vh;
 }
-.chats-view ion-list .item-chat>.delete{
+ion-list .item-chat>.delete{
 	    position: absolute;
     bottom: 0vh;
     left: 0vh;
@@ -69,7 +71,7 @@
     width: 5vh;
     height: 5vh;
 }
-.chats-view ion-list .item-chat>.delete>i{
+ion-list .item-chat>.delete>i{
     font-size: 3vh;
     color: #fff;
     position: absolute;
@@ -103,11 +105,11 @@
     top: 10vh;
     right: 0px;
     height: 8vh;
-    background: #be2251;
+    background: rgb(247, 208, 45);
     line-height: 8vh;
     text-align: center;
     font-size: 4vh;
-    color: #eaeaea;
+    color: #212121;
     font-weight: 400;
 }
 .chat-view .info-msj{

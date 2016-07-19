@@ -34,11 +34,12 @@ angular.module('controllers')
 					Message.alert("Iniciar sesión",respuesta.Mensaje,function(){
 						$scope.Login.Contrasena="";
 					});
-				}else
+				}else{
 					Memory.set("Usuario",respuesta.Usuario);
 					$rootScope.fromLogin=true;
 					$ionicViewSwitcher.nextDirection('forward');
 					$state.go('app.home');
+				}
 					
 				
 			})

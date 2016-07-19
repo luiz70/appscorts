@@ -7,11 +7,12 @@
 	$scope.first=false
 	$scope.openPerfil=function(user){
 		$ionicViewSwitcher.nextDirection('forward');
+		user.IdServidor=user.Id
 		$state.go("app.perfil",{user:user,back:"app.chats"});
 	}
 	$scope.chats=[]
 	$scope.chatsCargados=function(data){
-		console.log(data);
+		Socket.off("cliente_carga_chats",$scope.chatsCargados)
 		if(data.Error)console.log(data);
 		else $timeout(function(){$scope.chats=data.Chats},1)
 	}
@@ -65,7 +66,7 @@
 			Message.showLoading("Eliminando chat...")
 			Socket.off("cliente_elimina_like",$scope.chatEliminado)
 			Socket.on("cliente_elimina_like",$scope.chatEliminado)
-			Socket.emit("cliente_elimina_like",{IdServidor:perfil.IdServidor})
+			Socket.emit("cliente_elimina_like",{IdServidor:perfil.Id,IdChat:perfil.IdChat})
 		})
 	}
 	$scope.openOptions=function(){
@@ -80,160 +81,8 @@
 	}
 })
 
-.controller('Chat2', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher,Socket,$ionicScrollDelegate) {
-	$scope.cargandoMensajes=true;
-	$scope.chatUser=$state.params.user;
-	if(!$scope.chatUser){
-		$ionicViewSwitcher.nextDirection('back');
-		$state.go("app.chats")
-	}
-	
-	$scope.$on('$ionicView.afterEnter',function(){
-		if(Socket.status){
-		Socket.off("cliente_carga_chat",$scope.chatCargado)
-		Socket.on("cliente_carga_chat",$scope.chatCargado)
-		Socket.emit("cliente_carga_chat",{IdServidor:$scope.chatUser.IdServidor})
-		}
-	})
-	$scope.error=false;
-	$scope.mensajes=[];
-	$scope.chatCargado=function(data){
-		$timeout(function(){
-		
-		if(data.Error){
-			$scope.cargandoMensajes=false;
-			$scope.error=true;
-		}else{
-			$scope.mensajes=data.Mensajes
-			$timeout(function(){
-			$ionicScrollDelegate.scrollBottom();
-			$scope.cargandoMensajes=false;
-			},100)
-			console.log($scope.mensajes);
-		}
-		},1);
-	}
-	$scope.messages=[];
-	$scope.inputChat="";
-	$scope.abreUbicacion=function(mensaje){
-		console.log(mensaje.Ubicacion)
-		if(mensaje.Ubicacion){
-		}
-	}
-	$rootScope.enviarUbicacion=function(lugar){
-		$scope.exitModal()
-		
-		var dt=new Date()
-			var h=dt.getHours()<10?"0"+dt.getHours():dt.getHours();
-			var m=dt.getMinutes()<10?"0"+dt.getMinutes():dt.getMinutes();
-			var p="am"
-			if(h>12){
-				p="pm"
-				h-=12;
-			}
-			if(lugar)
-		$scope.mensajes.push({Mensaje:"Ubicación",Direccion:1,Fecha:h+":"+m+p,Ubicacion:{latitude:lugar.geometry.location.lat(),longitude:lugar.geometry.location.lng()}})
-		else
-		$scope.mensajes.push({Mensaje:"Ubicación",Direccion:1,Fecha:h+":"+m+p})
-	}
-	$scope.closeChat=function(){
-		$ionicViewSwitcher.nextDirection('back');
-		$state.go("app.chats")
-	}
-	//$scope.messages.push({text:"Hola, ¿cómo estás?",user:1,time:"12:35"})
-	
-	/*$timeout(function(){
-		$scope.messages.push({})
-	},1000);*/
-	$scope.sendMsg=function(){
-		$scope.inputChat=$scope.inputChat.trim();
-		if($scope.inputChat && $scope.inputChat!=""){
-			var dt=new Date()
-			var h=dt.getHours()<10?"0"+dt.getHours():dt.getHours();
-			var m=dt.getMinutes()<10?"0"+dt.getMinutes():dt.getMinutes();
-			var p="am"
-			if(h>12){
-				p="pm"
-				h-=12;
-			}
-			$scope.mensajes.push({Mensaje:$scope.inputChat,Direccion:1,Fecha:h+":"+m+p})
-			Socket.emit("cliente_mensaje_chat",{Mensaje:$scope.inputChat,IdServidor:$scope.chatUser.IdServidor})
-			$scope.inputChat="";
-		}
-	}
-	$scope.agregarFavorita=function(data){
-	}
-	$scope.showOptions=function(){
-		var buttons=[
-			{text:"Invitar favorita",funcion:$scope.agregarFavorita},
-			{text:"Enviar ubicación",funcion:$scope.sendUbicacion},
-			{text:"Solicitar servicio",funcion:$scope.solicitar},
-			{text:"Ver perfil",funcion:$scope.verperfil}
-		]
-		Message.showActionSheet(null,buttons,null,"Cancelar",function(index,res){
-			if(res){
-				res.funcion();
-			}
-		})
-	}
-	//Message.showModal("screens/modal/ubicacion.html",null,$scope);
-	$scope.sendUbicacion=function(){
-		Message.showModal("screens/modal/ubicacion.html",null,$scope);
-	}
-	$scope.verperfil=function(){
-		$ionicViewSwitcher.nextDirection('forward');
-		$state.go("app.perfil",{user:$scope.chatUser,back:"app.chat"});
-	}
-	window.addEventListener('native.keyboardshow', function(e){
-		//$timeout(function(){
-			$("#vista-chat").height((window.innerHeight-e.keyboardHeight)+"px")
-		//263
-		//},500);
-	});
-	window.addEventListener('native.keyboardhide', function(e){
-		//$timeout(function(){
-			$("#vista-chat").height("100vh")
-		//},500);
-	});
-	$scope.solicitar=function(){
-		Message.showModal("screens/modal/solicitar.html",null,$scope)
-	}
-	$scope.aceptServicio=function(){
-		Message.showLoading("Solicitando...");
-		Message.hideModal();
-		$timeout(function(){
-			Message.showModal("screens/modal/espera.html",null,$scope);
-			Message.hideLoading();
-		},1000)
-	}
-	$scope.exitModal=function(){
-			Message.hideModal();
-	}
-	
-	$scope.iniciaServicio=function(){
-		$scope.time=3600;
-		Message.showLoading("iniciandoServicio");
-		$timeout(function(){
-			//Message.hideModal();
-			Message.showModal("screens/modal/timer.html","none",$scope);
-			Message.hideLoading();
-		},1000)
-	}
-	$scope.addServicio=function(){
-		Message.confirm("Incrementar servicio","¿Deseaincrementar 1 hora el servicio?",function(){
-		 $scope.$broadcast('timer-add-cd-seconds', 3600);
-		})
-	}
-	$scope.cancelarServicio=function(){
-		//titulo,texto,funcion,btn1,btn2,closable,callback
-		Message.confirm("Cancelar servicio","Al cancelar este servicio no se reembolsara el pago.<div>¿Desea cancelar el servicio?</div>",function(){
-			$scope.exitModal();
-			$state.go("app.home");
-		})
-	}
-})
 .controller('Solicitar', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher) {
-	
+	console.log($scope.chatUser);
 	$scope.servicios=[
 		{descripcion:"Compañia completa",precio:"8,000",selected:true},
 		{descripcion:"Cena",precio:"3,000",selected:false},
@@ -259,6 +108,54 @@
 	},5000)
 	
 })
+.controller('AgregarFavorita', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher,Socket) {
+	
+	$scope.cierraModal=function(){
+		Message.hideModal();
+	}
+	$scope.cargando=true;
+	$scope.chats=[]
+	$scope.chatsCargados=function(data){
+		console.log(data);
+		if(data.Error)console.log(data);
+		else $timeout(function(){
+			$scope.chats=[]
+			for(var i=0;i<data.Chats.length;i++)if(data.Chats[i].Id!=$scope.chatUser.Id)$scope.chats.push(data.Chats[i]);
+			//_.without(data.Chats,{Id:$scope.chatUser.Id})
+		},1)
+	}
+	$scope.cargaFavoritas=function(){
+		if(Socket.status){
+		Socket.off("cliente_carga_chats",$scope.chatsCargados)
+		Socket.on("cliente_carga_chats",$scope.chatsCargados)
+		Socket.emit("cliente_carga_chats")
+		}
+	}
+	$scope.cargaFavoritas();
+	$scope.grupoCreado=function(data){
+		Message.hideLoading();
+		if(data.Error){
+			Message.alert("Crear Grupo","Error al agregar favoritos, intenta de nuevo.");
+		}else{
+			Message.hideModal();
+		}
+	}
+	$scope.agregaFav=function(){
+		var ids=[]
+		for(var i=0;i<$scope.chats.length;i++)
+			if($scope.chats[i].seleccionada)ids.push($scope.chats[i].Id)
+		if(ids.length>0){
+			Message.showLoading("Creando grupo...");
+			Socket.off("cliente_crear_grupo",$scope.grupoCreado)
+			Socket.on("cliente_crear_grupo",$scope.grupoCreado);
+			Socket.emit("cliente_crear_grupo",{IdChat:$scope.chatUser.IdChat,Ids:ids});
+		}else $scope.cierraModal();
+	}
+	$scope.selecciona=function(bitch){
+		bitch.seleccionada=!bitch.seleccionada;
+	}
+})
+
 .controller('Ubicacion', function($scope,$rootScope,Message,$state,Memory,$timeout,$ionicViewSwitcher) {
 	$scope.buscador={
 		texto:""
@@ -273,17 +170,47 @@
 		$scope.resultados=[];
 		$scope.buscador.texto=""
 	}
+	$scope.map=null;
+	$scope.ubicacion=null;
+	$timeout(function(){
+		$scope.map = new google.maps.Map(document.getElementById('Mapa'), {
+		  center: new google.maps.LatLng(20.666871, -103.352925),
+		  zoom: 17
+		});
+		$scope.marcador = new google.maps.Marker({
+			position: new google.maps.LatLng(20.666871, -103.352925),
+			map: $scope.map,
+			draggable: true,
+    		animation: google.maps.Animation.DROP,
+		});
+		$scope.marcador.addListener('position_changed', function(position) {
+			$scope.ubicacion={latitude:$scope.marcador.getPosition().lat(),longitude:$scope.marcador.getPosition().lng(),Direccion:"Ubicación personalizada"};
+	  	});
+		navigator.geolocation.getCurrentPosition($scope.ubicacionExito,function(){},
+        	{enableHighAccuracy: true,timeout:2000 , frequency: 1000});
+	},500);
+	$scope.enviarUbicacion=function(){
+		$scope.sendMessage($scope.ubicacion);
+		Message.hideModal();
+	}
+	$scope.seleccionarLugar=function(lugar){
+		
+		$scope.map.setCenter(new google.maps.LatLng(lugar.geometry.location.lat(),lugar.geometry.location.lng()));
+		$scope.marcador.setPosition(new google.maps.LatLng(lugar.geometry.location.lat(),lugar.geometry.location.lng()));
+		$scope.ubicacion={latitude:lugar.geometry.location.lat(),longitude:lugar.geometry.location.lng(),Direccion:lugar.formatted_address};
+		$scope.resultados=[];
+	}
 	
-	
+	$scope.ubicacionExito=function(data){
+		$scope.map.setCenter(new google.maps.LatLng(data.coords.latitude,data.coords.longitude));
+		$scope.marcador.setPosition(new google.maps.LatLng(data.coords.latitude,data.coords.longitude));
+	}
 	$scope.busca=function(){
-		var map = new google.maps.Map(document.getElementById('map'), {
-      center: new google.maps.LatLng(20.666871, -103.352925),
-      zoom: 15
-    });
+	
 		$scope.resultados=[]
 		if($scope.buscador.texto){
 		if($scope.buscador.texto.trim()!=""){
-			$scope.searchBox = new google.maps.places.PlacesService(map);
+			$scope.searchBox = new google.maps.places.PlacesService($scope.map);
 			var service = new google.maps.places.AutocompleteService();
  			service.getPlacePredictions({ input: $scope.buscador.texto ,language:"es"}, $scope.predicciones);
 		}else $scope.resultados=[]
@@ -306,7 +233,6 @@
 	 $scope.buscando=false;
 	  if (status == google.maps.places.PlacesServiceStatus.OK) {
 	  $scope.$apply(function () {
-		  console.log(result);
           	$scope.resultados.push(result);
         });
 	  }

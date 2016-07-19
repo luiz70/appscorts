@@ -1,11 +1,11 @@
 <ion-modal-view class="modal-espera" ng-controller="Espera">
     <ion-content class="" has-bouncing="false">
        <div class="user-info">
-    		<div class="foto" style="background:url(img/profiles/prof{{chatUser.id}}.jpg)"></div>
-            <div class="title">{{chatUser.nombre}}</div>
-            <div class="edad">{{chatUser.edad}} años</div>
+    		<div class="foto" style="background:url({{config.http.getUrl()+'servidor/foto/'+chatUser.Id+'/0'}})"></div>
+            <div class="title">{{chatUser.Nombre}}</div>
+            <!--div class="edad">{{chatUser.edad}} años</div-->
     	</div>
-        <div class="destino-info">Llegará en 17 min a "Hotel Vallarta"</div>
+        <div class="destino-info">En espera del inicio del servicio</div>
         <button class="cancel-service" ng-click="cancelarServicio();">Cancelar servicio</button>
     </ion-content>
 </ion-modal-view>

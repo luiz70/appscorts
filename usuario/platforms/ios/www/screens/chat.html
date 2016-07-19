@@ -9,6 +9,7 @@
 		</div>
 	</ion-header-bar>
     <div class="solicitar" ng-click="solicitar()">Solicitar servicio</div>
+    <div class="info-msj">Escribe un mensaje para contactar a {{chatUser.Nombre}}</div>
     <!--div id="map"></div>
 	<ion-content class="main-content" has-bouncing="true" scroll="true">
     	<div class="cargando-chat ng-hide" ng-hide="!cargandoMensajes"><ion-spinner icon="android"></ion-spinner></div>
@@ -30,45 +31,41 @@
             </div>
         </div>
       
-          <ion-content has-bouncing="true" class="has-header has-footer" 
-              delegate-handle="userMessageScroll">
+          <ion-content has-bouncing="true" class="has-header has-footer" delegate-handle="userMessageScroll">
             
-              <div ng-repeat="message in messages" class="message-wrapper"
-                  on-hold="onMessageHold($event, $index, message)">
+              <div ng-repeat="mensaje in mensajes" class="message-wrapper" on-hold="onMessageHold($event, $index, mensaje)" ng-click="abreUbicacion(mensaje)">
       
-                  <div ng-if="user._id !== message.userId">
+                  <div ng-if="!mensaje.Usuario">
                       
-                    <img ng-click="viewProfile(message)" class="profile-pic left" 
-                          ng-src="{{toUser.pic}}" onerror="onProfilePicError(this)" />
+                    <img ng-click="verperfil(mensaje)" class="profile-pic left" ng-src="{{config.http.getUrl()+'servidor/foto/'+chatUser.IdServidor+'/0'}}" onerror="" />
       
                       <div class="chat-bubble left">
       
-                          <div class="message" ng-bind-html="message.text | nl2br" autolinker>
+                          <div class="message" ng-bind-html="mensaje.Mensaje | nl2br" autolinker>
                           </div>
       
                           <div class="message-detail">
-                              <span ng-click="viewProfile(message)" 
-                                  class="bold">{{toUser.username}}</span>,
-                              <span am-time-ago="message.date"></span>
+                              <span ng-click="verperfil(mensaje)" class="bold">{{chatUser.Nombre}}</span>,
+                              <span am-time-ago="mensaje.Fecha"></span>
                           </div>
       
                       </div>
                   </div>
       
-                  <div ng-if="user._id === message.userId">
+                  <div ng-if="mensaje.Usuario">
                     
-                       <img ng-click="viewProfile(message)" class="profile-pic right" 
-                          ng-src="{{user.pic}}" onerror="onProfilePicError(this)" />
+                       <!--img ng-click="viewProfile(message)" class="profile-pic right" 
+                          ng-src="{{user.pic}}" onerror="onProfilePicError(this)" /-->
                     
                       <div class="chat-bubble right">
       
-                          <div class="message" ng-bind-html="message.text | nl2br" autolinker>
+                          <div  class="message" ng-bind-html="mensaje.Mensaje | nl2br" autolinker>
                           </div>
       
-                          <div class="message-detail">
-                              <span ng-click="viewProfile(message)" 
-                                  class="bold">{{user.username}}</span>, 
-                              <span am-time-ago="message.date"></span>
+                          <div class="message-detail" >
+                         	 <span class="bold"  ng-hide="mensaje.Confirmado">Enviando mensaje...</span> 
+                              <span class="bold"  ng-hide="!mensaje.Confirmado">Tú,</span> 
+                              <span am-time-ago="mensaje.Fecha"  ng-hide="!mensaje.Confirmado"></span>
                           </div>
       
                       </div>
@@ -80,7 +77,7 @@
               </div>
           </ion-content>
       
-          <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)" novalidate >
+          <form name="sendMessageForm" ng-submit="sendMessage(null)" novalidate >
               <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach >
                   <label class="item-input-wrapper">
                       <textarea ng-model="input.message" value="" placeholder="Escribe tu mensaje..." required minlength="1" maxlength="1500" msd-elastic></textarea>

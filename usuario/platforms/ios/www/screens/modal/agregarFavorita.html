@@ -1,0 +1,22 @@
+<ion-modal-view class="modal-informacion modal-favoritas" ng-controller="AgregarFavorita">
+    <ion-header-bar  class="header-bar-menu">
+    	<div class="buttons">
+			<button class="button button-icon button-clear ion-android-close" ng-click="cierraModal()"></button>
+		</div>
+        <h1 class="title">Agregar Favorita</h1>
+        <div class="buttons r">
+        <button class="button button-icon button-clear ion-android-add" ng-click="agregaFav()"></button>
+		</div>
+    </ion-header-bar>
+    <ion-content class="" has-bouncing="false">
+    <ion-list can-swipe="false">
+   		 <ion-item  class="item-avatar item-chat" ng-repeat="bitch in chats" ng-if="!bitch.Grupo" ng-click="">
+                <div class="img" style="background: url({{config.http.getUrl()+'servidor/foto/'+bitch.Id+'/0'}});" ng-click="openPerfil(bitch)"></div>
+                <h2>{{bitch.Nombre}}</h2>
+      			<p>Toca para agregar</p>
+                <ion-checkbox class="checkbox-dark" ng-model="bitch.seleccionada"></ion-checkbox>
+                <div class="cover" ng-click="selecciona(bitch)"></div>
+            </ion-item>
+            </ion-list>
+    </ion-content>
+</ion-modal-view>
